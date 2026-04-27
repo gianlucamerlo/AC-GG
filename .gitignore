@@ -1,2 +1,22 @@
-launch.json
-application.properties
+# Java / Maven — file compilati
+suonacongigi-backend/target/
+
+# IntelliJ
+.idea/
+*.iml
+
+# VS Code — contiene JWT_SECRET e credenziali DB, NON va su Git
+.vscode/
+**/.vscode/
+**/launch.json
+
+# Spring Boot — credenziali DB locali
+**/application.properties
+
+# Angular
+suonacongigi-frontend/node_modules/
+suonacongigi-frontend/dist/
+
+# Variabili d'ambiente
+.env
+*.env
