@@ -19,13 +19,13 @@
 
 Ognuno è responsabile di **un'area verticale** — dalla chiamata API al componente Angular.
 
-| # | Persona | Area | Endpoints principali |
-|---|---------|------|----------------------|
-| 1 | _______ | **Auth + Routing** | `POST /api/auth/login` `POST /api/auth/register` + guard + interceptor JWT |
-| 2 | _______ | **Profilo utente** | `GET /api/users/me` `PUT /api/users/me/musical-profile` + cataloghi generi/strumenti/artisti |
-| 3 | _______ | **Eventi (utente)** | `GET /api/events` `POST /api/events/:id/register` `DELETE /api/events/:id/unregister` |
-| 4 | _______ | **Forum** | `GET /api/forum/categories` thread, post, creazione, eliminazione |
-| 5 | _______ | **Area admin** | CRUD eventi, lista iscritti, moderazione post |
+| # |    Persona   |         Area        | Endpoints principali |
+|---|--------------|---------------------|----------------------|
+| 1 |   Clorinda   | **Auth + Routing**  | `POST /api/auth/login` `POST /api/auth/register` + guard + interceptor JWT |
+| 2 |   Eleonora   | **Profilo utente**  | `GET /api/users/me` `PUT /api/users/me/musical-profile` + cataloghi generi/strumenti/artisti |
+| 3 |   Brandon    | **Eventi (utente)** | `GET /api/events` `POST /api/events/:id/register` `DELETE /api/events/:id/unregister` |
+| 4 |   Beatrice   | **Forum**           | `GET /api/forum/categories` thread, post, creazione, eliminazione |
+| 5 |   Gianluca   | **Area admin**      | CRUD eventi, lista iscritti, moderazione post |
 | 6 | Giorgia (SM) | **Scaffolding + layout + sblocchi** | Navbar, routing principale, struttura cartelle, review PR |
 
 > **Regola:** se sei bloccato più di 30 minuti, lo dici subito in chat — non aspettare il giorno dopo.
