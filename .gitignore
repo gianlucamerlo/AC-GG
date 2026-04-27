@@ -10,9 +10,6 @@ suonacongigi-backend/target/
 **/.vscode/
 **/launch.json
 
-# Spring Boot 
-**/application.properties
-
 # Angular
 suonacongigi-frontend/node_modules/
 suonacongigi-frontend/dist/
