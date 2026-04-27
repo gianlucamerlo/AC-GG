@@ -1,16 +1,16 @@
-# Java / Maven — file compilati
+# Java / Maven 
 suonacongigi-backend/target/
 
 # IntelliJ
 .idea/
 *.iml
 
-# VS Code — contiene JWT_SECRET e credenziali DB, NON va su Git
+# VS Code
 .vscode/
 **/.vscode/
 **/launch.json
 
-# Spring Boot — credenziali DB locali
+# Spring Boot 
 **/application.properties
 
 # Angular
