@@ -1,0 +1,12 @@
+{"properties": [
+  {
+    "name": "\nspring.datasource.passwor",
+    "type": "java.lang.String",
+    "description": "A description for '\nspring.datasource.passwor'"
+  },
+  {
+    "name": "\nspringdoc.swagger-ui.models-sorte",
+    "type": "java.lang.String",
+    "description": "A description for '\nspringdoc.swagger-ui.models-sorte'"
+  }
+]}
