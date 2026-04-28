@@ -17,3 +17,4 @@ suonacongigi-frontend/dist/
 # Variabili d'ambiente
 .env
 *.env
+suonacongigi-backend/src/main/resources/application.properties
