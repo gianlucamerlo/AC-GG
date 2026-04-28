@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SuonaConGigiApplication2 {
+public class SuonaConGigiApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SuonaConGigiApplication2.class, args);
+        SpringApplication.run(SuonaConGigiApplication.class, args);
     }
 }
