@@ -1,79 +1,93 @@
-# 🎸 Suona con Gigi — Kickoff di Progetto
-**Data:** oggi  
+# 🎸 Suona con Gigi — Kickoff del Progetto
 **Scrum Master:** Giorgia  
 **Team:** 6 persone  
-**Deadline:** lunedì prossimo
+**Deadline:** 04/05
+
 
 ---
 
 ## Situazione di partenza
 
-✅ Backend del docente funzionante su tutte le macchine  
+✅ Backend Spring Boot completo e funzionante su tutte le macchine  
 ✅ Swagger disponibile su `http://localhost:8080/swagger-ui.html`  
-⏳ Angular: installazione domani in aula  
-⏳ Frontend: da costruire interamente questa settimana
+✅ Frontend Angular 21 costruito e funzionante su `http://localhost:4200`  
+✅ Autenticazione JWT end-to-end funzionante  
+✅ CRUD eventi, forum, profilo musicale implementati  
+⏳ Sprint 4 in corso: validazioni form, moderazione contenuti, test, rifinitura UI
 
 ---
 
 ## Divisione dei moduli
 
-Ognuno è responsabile di **un'area verticale** — dalla chiamata API al componente Angular.
-
-| # |    Persona   |         Area        | Endpoints principali |
-|---|--------------|---------------------|----------------------|
-| 1 |   Clorinda   | **Auth + Routing**  | `POST /api/auth/login` `POST /api/auth/register` + guard + interceptor JWT |
-| 2 |   Eleonora   | **Profilo utente**  | `GET /api/users/me` `PUT /api/users/me/musical-profile` + cataloghi generi/strumenti/artisti |
-| 3 |   Brandon    | **Eventi (utente)** | `GET /api/events` `POST /api/events/:id/register` `DELETE /api/events/:id/unregister` |
-| 4 |   Beatrice   | **Forum**           | `GET /api/forum/categories` thread, post, creazione, eliminazione |
-| 5 |   Gianluca   | **Area admin**      | CRUD eventi, lista iscritti, moderazione post |
-| 6 | Giorgia (SM) | **Scaffolding + layout + sblocchi** | Navbar, routing principale, struttura cartelle, review PR |
+| # |    Persona   |         Area     | Responsabilità principali |
+|---|--------------|------------------|---------------------------|
+| 1 |   Gianluca   | **Backend — Auth & Security** | `POST /api/auth/login` `POST /api/auth/register` · JWT · SecurityConfig · Bean Validation sui DTO |
+| 2 |   Brandon    | **Backend — Forum & Eventi**  | CRUD eventi · iscrizione/disiscrizione · thread · post · moderazione contenuti |
+| 3 |   Clorinda   | **Frontend — UI & Components** | EventsList · Navbar · CSS responsivo · feedback visivo · pagina 404 |
+| 4 |   Eleonora   | **Frontend — Forms & Validazioni** | `GET /api/users/me` · profilo musicale · Reactive Forms · messaggi di errore · validatori custom |
+| 5 |   Beatrice   | **DB & Testing** | Schema MySQL · DatabaseSeeder · Postman Collection · export .sql |
+| 6 | Giorgia (SM) | **Scrum Master** | Coordinamento · review PR · integrazione · CORS demo · README · script demo |
 
 > **Regola:** se sei bloccato più di 30 minuti, lo dici subito in chat — non aspettare il giorno dopo.
 
 ---
 
-## Piano della settimana
+## Piano Sprint 4 — questa settimana
 
-### Oggi (senza Angular)
-- [ ] Compilare la tabella sopra con i nomi reali
-- [ ] Aprire Swagger e esplorare gli endpoint della propria area
-- [ ] Studiare le interfacce TypeScript condivise (`models.ts`)
-- [ ] Disegnare su carta le schermate da costruire
-- [ ] Decidere la struttura delle cartelle Angular insieme
+### Gianluca
+- [ ] Aggiungere `@NotBlank` / `@Email` / `@Size` ai DTO `RegisterRequest` e `LoginRequest`
+- [ ] Testare che un token JWT scaduto restituisca 401 e non 500
+- [ ] Aggiornare CORS origin da `localhost:4200` all'IP della macchina demo
 
-### Domani — setup Angular
-- [ ] `ng new suona-con-gigi-frontend` (uno solo crea, gli altri clonano da Git)
-- [ ] Struttura cartelle concordata
-- [ ] `AuthService` con login, register, salvataggio JWT in localStorage
-- [ ] `JwtInterceptor` che aggiunge il token a ogni richiesta
-- [ ] `AuthGuard` per proteggere le rotte
-- [ ] Routing principale con lazy loading per ogni modulo
+### Brandon
+- [ ] Implementare `DELETE /api/forum/threads/{id}` (manca nel controller)
+- [ ] Aggiungere `@Valid` sui DTO `EventRequest`: titolo obbligatorio, `maxSeats > 0`, data futura
+- [ ] Aggiungere campo `hidden` ai Post per moderazione admin
+- [ ] Verificare che `GET /api/events/{id}/registrants` restituisca 403 per utenti normali
 
-### Mercoledì–Giovedì
-- [ ] Ogni persona sviluppa i componenti della propria area
-- [ ] Daily standup mattina (10 min): *cosa ho fatto / cosa faccio / sono bloccato?*
+### Clorinda
+- [ ] Usare il signal `actionLoading` nel template HTML di EventsList per disabilitare il bottone durante l'attesa
+- [ ] Aggiungere pagina 404 personalizzata (il path `**` attualmente redirige in silenzio)
+- [ ] Revisione CSS responsivo: dashboard admin leggibile su schermi piccoli
+- [ ] Verificare che il `notifySuccess` dopo iscrizione/disiscrizione sia visibile a schermo
 
-### Venerdì
-- [ ] Prima integrazione completa — test con il backend reale
-- [ ] Ogni area deve mostrare almeno una schermata funzionante end-to-end
+### Eleonora
+- [ ] Aggiungere messaggi di errore visibili nei template di `EventForm` e `ProfileForm`
+- [ ] Aggiungere validatore custom Angular: `eventDate` deve essere nel futuro
+- [ ] Bloccare il bottone submit se `form.invalid` (la logica TS c'è, manca nel template)
+- [ ] Aggiungere `markAllAsTouched()` alla submit dell'`EventFormComponent`
 
-### Sabato–Domenica
-- [ ] Fix, validazioni form (Reactive Forms), gestione errori
-- [ ] Stile e pulizia UI
-- [ ] Postman Collection (almeno i flussi principali)
+### Beatrice
+- [ ] Scrivere la Postman Collection: cartelle Auth, Events, Forum, Users con 2-3 request ciascuna
+- [ ] Aggiungere test automatici (`pm.test`) per status code 200/201/403/404
+- [ ] Aggiungere script "Tests" sul login per salvare il token automaticamente in `{{token}}`
+- [ ] Esportare lo schema MySQL finale come file `.sql`
+- [ ] Verificare che il DatabaseSeeder popoli correttamente: 1 admin, 2-3 utenti, 3+ eventi, thread e post
+
+### Giorgia (SM)
+- [ ] Daily standup ogni mattina (10 min): *cosa ho fatto / cosa faccio / sono bloccata?*
+- [ ] Fix CORS nel `SecurityConfig`: aggiungere IP della macchina demo
+- [ ] Verificare che tutti abbiano il progetto che gira in locale (backend 8080, frontend 4200)
+- [ ] Review PR prima del merge su `develop`
+- [ ] Preparare lo script della demo: ordine schermate + cosa dire alla commissione
 
 ### Lunedì — consegna
-- [ ] Test finale completo
-- [ ] Demo del progetto
+- [ ] Test finale completo end-to-end
+- [ ] Demo del progetto alla commissione
 
 ---
 
 ## Regole Git (fondamentali con 6 persone)
 
 ```
-main          ← solo codice funzionante, si mergia solo a fine giornata
-develop       ← branch di integrazione comune
-feature/auth  ← branch personale per area (es: feature/eventi, feature/forum)
+main              ← solo codice funzionante, merge solo a fine giornata
+develop           ← branch di integrazione comune
+feature/auth      ← branch personale per area
+feature/eventi
+feature/forum
+feature/profilo
+feature/admin
+feature/testing
 ```
 
 **Flusso quotidiano:**
@@ -87,24 +101,26 @@ feature/auth  ← branch personale per area (es: feature/eventi, feature/forum)
 
 ---
 
-## Struttura cartelle Angular (da concordare insieme oggi)
+## Struttura cartelle Angular (come da codice)
 
 ```
 src/
 └── app/
     ├── core/
-    │   ├── services/        ← AuthService, EventService, ForumService...
+    │   ├── services/        ← AuthService, EventService, ForumService, DashboardService...
     │   ├── guards/          ← AuthGuard, AdminGuard
-    │   ├── interceptors/    ← JwtInterceptor
-    │   └── models/          ← models.ts (interfacce TypeScript condivise)
+    │   ├── interceptors/    ← JwtInterceptor, ErrorInterceptor
+    │   └── models/          ← interfacce TypeScript condivise
     ├── shared/
-    │   └── components/      ← Navbar, Footer, componenti riutilizzabili
+    │   ├── components/      ← Navbar, componenti riutilizzabili
+    │   ├── base/            ← BaseComponent (LoadingService, UiService)
+    │   └── musical-profile-form/
     └── features/
         ├── auth/            ← login, registrazione
-        ├── profile/         ← profilo utente
-        ├── events/          ← lista e dettaglio eventi
+        ├── profile/         ← profilo utente + profilo musicale
+        ├── events/          ← lista eventi, dettaglio, form create/edit
         ├── forum/           ← categorie, thread, post
-        └── admin/           ← dashboard admin
+        └── admin/           ← dashboard admin con statistiche
 ```
 
 ---
@@ -114,28 +130,35 @@ src/
 | Area | Endpoint base | Chi lo usa |
 |------|--------------|------------|
 | Auth | `/api/auth` | Tutti (login/register) |
-| Utenti | `/api/users` | Profilo + Admin |
-| Artisti | `/api/artists` | Profilo (selezione) + Admin (CRUD) |
-| Generi | `/api/genres` | Profilo (selezione) + Admin (CRUD) |
-| Strumenti | `/api/instruments` | Profilo (selezione) + Admin (CRUD) |
-| Eventi | `/api/events` | Evento (lista/iscrizione) + Admin (CRUD) |
-| Forum | `/api/forum` | Forum (tutto) |
+| Utenti | `/api/users` | Profilo (Eleonora) + Admin |
+| Artisti | `/api/artists` | Profilo musicale + Admin (CRUD) |
+| Generi | `/api/genres` | Profilo musicale + Admin (CRUD) |
+| Strumenti | `/api/instruments` | Profilo musicale + Admin (CRUD) |
+| Eventi | `/api/events` | Clorinda (lista/iscrizione) + Brandon (CRUD admin) |
+| Forum | `/api/forum` | Brandon (tutto) |
 
-**Header da mandare in ogni richiesta autenticata:**
+**Header da aggiungere in ogni richiesta autenticata:**
 ```
 Authorization: Bearer <token_jwt>
 ```
-Il token si ottiene al login e va salvato in `localStorage`.
+Il token si ottiene al login ed è gestito automaticamente dal `JwtInterceptor` Angular.
+
+---
+
+## Note tecniche chiave
+
+- **Signals e standalone components**: tutto il frontend usa Angular 21 con Signals e `toSignal()` — citarlo nella demo come scelta architetturale moderna
+- **GlobalExceptionHandler**: tutti gli errori backend sono centralizzati e restituiscono un `ApiEnvelope` uniforme
+- **@PreAuthorize**: le rotte admin sono protette sia lato Angular (AdminGuard) che lato Spring (`hasRole('ADMIN')`)
+- **DatabaseSeeder**: al primo avvio popola automaticamente il database con dati di esempio
 
 ---
 
 ## Contatti e strumenti
 
 - **Swagger:** `http://localhost:8080/swagger-ui.html`
-- **Repository Git:** _______ (inserire link)
-- **Chat di gruppo:** _______ (WhatsApp / Discord)
+- **Repository Git:** https://github.com/gianlucamerlo/AC-GG 
+- **Chat di gruppo:** WhatsApp / Discord
 - **Scrum Master:** Giorgia
 
 ---
-
-> *"Backend pronto. Frontend da costruire. Una settimana. Ce la facciamo."* 🎵
