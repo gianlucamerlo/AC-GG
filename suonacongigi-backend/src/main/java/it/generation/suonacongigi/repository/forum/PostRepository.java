@@ -19,4 +19,6 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
     // Il metodo countByThreadId restituisce il numero di post per un dato thread, identificato dal suo ID.
     long countByThreadId(Long threadId);
+
+    void deleteByThreadId(Long threadId);
 }

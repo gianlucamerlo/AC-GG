@@ -110,6 +110,19 @@ public class ForumService {
 
         postRepository.delete(post);
     }
+    @Transactional
+    public void deleteThread(Long threadId, String username, boolean isAdmin) {
+    ForumThread thread = threadRepository.findById(Objects.requireNonNull(threadId))
+            .orElseThrow(() -> new NoSuchElementException("Thread non trovato"));
+
+    if (!thread.getAuthor().getUsername().equals(username) && !isAdmin) {
+        throw new IllegalStateException("Azione negata: non sei l'autore");
+    }
+
+    // Prima elimina tutti i post del thread, poi il thread stesso
+    postRepository.deleteByThreadId(thread.getId());
+    threadRepository.delete(thread);
+}
 
     // --- Mapper Certificati (Strict Null Safety) ---
 
