@@ -145,6 +145,18 @@ Il token si ottiene al login ed è gestito automaticamente dal `JwtInterceptor` 
 
 ---
 
+## Requisiti fuori scope
+ 
+Funzionalità identificate e consapevolmente escluse da questo sprint per vincoli di tempo e complessità. Documentate per eventuali iterazioni future.
+ 
+| ID | Requisito | Motivazione | Implementazione futura |
+|----|-----------|-------------|------------------------|
+| RF-U01 | Conferma via email alla registrazione | Richiede server SMTP, token di verifica su DB e logica asincrona — fuori scope per una settimana | `JavaMailSender` + token UUID su DB + endpoint `GET /api/auth/verify?token=...` |
+ 
+> La registrazione funziona regolarmente — l'account viene creato e attivato immediatamente. Manca solo la verifica via email.
+
+---
+
 ## Note tecniche chiave
 
 - **Signals e standalone components**: tutto il frontend usa Angular 21 con Signals e `toSignal()` — citarlo nella demo come scelta architetturale moderna

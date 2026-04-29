@@ -2,11 +2,12 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { DashboardService, Stats } from '../../core/services/dashboard.service';
 import { BaseComponent } from '../../shared/base.component'; // Import della base
+import { AdminForumComponent } from './admin-forum.component';
 
 @Component({
   selector: 'app-admin-dashboard',
   standalone: true,
-  imports: [DatePipe],
+  imports: [DatePipe, AdminForumComponent],
   templateUrl: './admin-dashboard.component.html',
   styleUrls: ['./admin-dashboard.component.css']
 })
