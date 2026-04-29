@@ -9,9 +9,12 @@ import it.generation.suonacongigi.dto.common.ApiEnvelope;
 import it.generation.suonacongigi.dto.user.MusicalProfileRequest; 
 import it.generation.suonacongigi.dto.user.UserResponse;
 import it.generation.suonacongigi.model.User;
+import it.generation.suonacongigi.repository.user.UserRepository;
 import it.generation.suonacongigi.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -34,6 +37,9 @@ public class UserController extends BaseController {
 
     // Iniezione del servizio che contiene la logica di business per i profili utente.
     private final UserService userService;
+
+    @Autowired //inseririmento nuovo
+    private UserRepository userRepository;
 
     @Operation(
         summary = "Ottieni il mio profilo", 
@@ -100,4 +106,24 @@ public class UserController extends BaseController {
 
         return ok(data, "Lista utenti recuperata con successo");
     }
+
+    //ENDPOINT PER DISATTIVAZIONE UTENTE
+    @Operation(
+        summary = "Disabilita utente(ADMIN)"
+    )
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Utente disabilitato con successo"),
+        @ApiResponse(responseCode = "400", description = "Dati utente non validi"),
+        @ApiResponse(responseCode = "401", description = "Token non valido o assente")
+    })
+    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("/disable/{id}")
+    public ResponseEntity<?> disableUser(@PathVariable Long id) {   User user = userRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Utente non trovato"));
+
+    user.setEnabled(false);
+
+    userRepository.save(user);
+
+    return ResponseEntity.ok("Utente disabilitato con successo"); }
 }

@@ -99,11 +99,11 @@ INSERT INTO artists (name) VALUES
 -- Hash BCrypt di "suonacongigi" (cost 10):
 -- $2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi
 
-INSERT INTO users (username, email, password, role) VALUES
-('admin',        'admin@suonacongigi.it', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'ADMIN'), -- id 1
-('mario_gibson', 'mario@email.it',        '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'USER'),  -- id 2
-('elena_sax',    'elena@email.it',        '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'USER'),  -- id 3
-('luca_synth',   'luca@email.it',         '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'USER');  -- id 4
+INSERT INTO users (username, email, password, role, enabled) VALUES
+('admin',        'admin@suonacongigi.it', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'ADMIN', TRUE), -- id 1
+('mario_gibson', 'mario@email.it',        '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'USER', TRUE),  -- id 2
+('elena_sax',    'elena@email.it',        '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'USER', TRUE),  -- id 3
+('luca_synth',   'luca@email.it',         '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'USER', TRUE);  -- id 4
 
 -- ── 5. PROFILI MUSICALI (4) ─────────────────────────────────
 

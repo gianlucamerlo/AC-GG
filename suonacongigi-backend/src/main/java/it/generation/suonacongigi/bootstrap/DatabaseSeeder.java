@@ -93,6 +93,7 @@ public class DatabaseSeeder implements CommandLineRunner {
                 "email VARCHAR(100) NOT NULL UNIQUE, "   +
                 "password VARCHAR(255) NOT NULL, "       +
                 "role VARCHAR(20) NOT NULL, "            +
+                "enabled TINYINT(1) NOT NULL DEFAULT 1, " +
                 "created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP) ENGINE=InnoDB");
 
             // Dominio dei Generi Musicali

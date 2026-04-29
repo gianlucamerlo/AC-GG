@@ -61,6 +61,9 @@ public class User implements UserDetails {
     @Column(name = "created_at", insertable = false, updatable = false)
     private LocalDateTime createdAt;
 
+    @Column(nullable = false)
+private boolean enabled = true;
+
     // L'enum Role rappresenta i possibili ruoli di un utente: USER e ADMIN.
     public enum Role {
         USER, ADMIN

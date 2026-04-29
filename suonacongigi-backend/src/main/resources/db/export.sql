@@ -57,7 +57,7 @@ CREATE TABLE `event_registrations` (
   KEY `fk_reg_user` (`user_id`),
   CONSTRAINT `fk_reg_event` FOREIGN KEY (`event_id`) REFERENCES `events` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk_reg_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,7 +66,6 @@ CREATE TABLE `event_registrations` (
 
 LOCK TABLES `event_registrations` WRITE;
 /*!40000 ALTER TABLE `event_registrations` DISABLE KEYS */;
-INSERT INTO `event_registrations` VALUES (1,1,2,'2026-04-28 13:04:33'),(2,1,3,'2026-04-28 13:04:33');
 /*!40000 ALTER TABLE `event_registrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -88,7 +87,7 @@ CREATE TABLE `events` (
   PRIMARY KEY (`id`),
   KEY `fk_event_creator` (`created_by_id`),
   CONSTRAINT `fk_event_creator` FOREIGN KEY (`created_by_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -97,7 +96,6 @@ CREATE TABLE `events` (
 
 LOCK TABLES `events` WRITE;
 /*!40000 ALTER TABLE `events` DISABLE KEYS */;
-INSERT INTO `events` VALUES (1,'Summer Jam Session','Evento aperto a tutti i generi.','2026-05-28 15:04:33','Parco della Musica',50,1);
 /*!40000 ALTER TABLE `events` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -114,7 +112,7 @@ CREATE TABLE `forum_categories` (
   `description` text,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -123,7 +121,6 @@ CREATE TABLE `forum_categories` (
 
 LOCK TABLES `forum_categories` WRITE;
 /*!40000 ALTER TABLE `forum_categories` DISABLE KEYS */;
-INSERT INTO `forum_categories` VALUES (1,'Discussioni Generali','Chiacchiere sulla musica.'),(2,'Tendenze','Cosa ne sarà della musica in futuro?');
 /*!40000 ALTER TABLE `forum_categories` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -145,7 +142,7 @@ CREATE TABLE `forum_threads` (
   KEY `fk_thread_author` (`author_id`),
   CONSTRAINT `fk_thread_author` FOREIGN KEY (`author_id`) REFERENCES `users` (`id`),
   CONSTRAINT `fk_thread_category` FOREIGN KEY (`category_id`) REFERENCES `forum_categories` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -154,7 +151,6 @@ CREATE TABLE `forum_threads` (
 
 LOCK TABLES `forum_threads` WRITE;
 /*!40000 ALTER TABLE `forum_threads` DISABLE KEYS */;
-INSERT INTO `forum_threads` VALUES (1,'Consigli per iniziare la chitarra',1,2,'2026-04-28 13:04:33'),(2,'L\'intelligenza artificiale sostituirà mai i compositori umani?',2,3,'2026-04-28 13:04:33');
 /*!40000 ALTER TABLE `forum_threads` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -222,7 +218,7 @@ CREATE TABLE `musical_profiles` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_id` (`user_id`),
   CONSTRAINT `fk_profile_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -231,7 +227,6 @@ CREATE TABLE `musical_profiles` (
 
 LOCK TABLES `musical_profiles` WRITE;
 /*!40000 ALTER TABLE `musical_profiles` DISABLE KEYS */;
-INSERT INTO `musical_profiles` VALUES (1,1,'Founder della piattaforma e collezionista di vinili.'),(2,2,'Chitarrista rock vecchio stampo, cerco gente per jam session pesanti.'),(3,3,'Sassofonista appassionata di jazz classico, sempre alla ricerca di nuovi groove.'),(4,4,'Produttore di musica elettronica, amo i sintetizzatori analogici.');
 /*!40000 ALTER TABLE `musical_profiles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -253,7 +248,7 @@ CREATE TABLE `posts` (
   KEY `fk_post_author` (`author_id`),
   CONSTRAINT `fk_post_author` FOREIGN KEY (`author_id`) REFERENCES `users` (`id`),
   CONSTRAINT `fk_post_thread` FOREIGN KEY (`thread_id`) REFERENCES `forum_threads` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -262,7 +257,6 @@ CREATE TABLE `posts` (
 
 LOCK TABLES `posts` WRITE;
 /*!40000 ALTER TABLE `posts` DISABLE KEYS */;
-INSERT INTO `posts` VALUES (1,'Quale Gibson consigliate per il Blues?',1,2,'2026-04-28 13:04:33'),(2,'Inizia con una Les Paul Studio!',1,1,'2026-04-28 13:04:33'),(3,'Domanda provocatoria: credete che un algoritmo potrà mai replicare il feeling e l\'imprevedibilità di un assolo jazz registrato dal vivo?',2,3,'2026-04-28 13:04:33'),(4,'Secondo me scordatevelo. Manca il sudore, le corde rotte e l\'anima. La musica è emozione umana, non un calcolo di probabilità su una scala pentatonica.',2,2,'2026-04-28 13:04:33'),(5,'Vero, però ho provato dei software che generano progressioni armoniche incredibili. Forse l\'AI sarà solo il \'nuovo sintetizzatore\': all\'inizio lo odiano tutti, poi diventa lo standard.',2,3,'2026-04-28 13:04:33'),(6,'Finché un robot non spacca una chitarra sul palco dopo un feedback assordante, per me non è musica! 🎸',2,2,'2026-04-28 13:04:33');
 /*!40000 ALTER TABLE `posts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -289,7 +283,6 @@ CREATE TABLE `profile_artists` (
 
 LOCK TABLES `profile_artists` WRITE;
 /*!40000 ALTER TABLE `profile_artists` DISABLE KEYS */;
-INSERT INTO `profile_artists` VALUES (2,1),(2,2),(2,4),(3,6),(3,7),(3,8),(1,11),(4,14),(4,15),(4,19),(1,23),(3,23),(2,30),(4,41);
 /*!40000 ALTER TABLE `profile_artists` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -316,7 +309,6 @@ CREATE TABLE `profile_genres` (
 
 LOCK TABLES `profile_genres` WRITE;
 /*!40000 ALTER TABLE `profile_genres` DISABLE KEYS */;
-INSERT INTO `profile_genres` VALUES (2,1),(2,2),(3,3),(3,4),(1,5),(4,6),(4,8),(1,10),(3,10);
 /*!40000 ALTER TABLE `profile_genres` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -343,7 +335,6 @@ CREATE TABLE `profile_instruments` (
 
 LOCK TABLES `profile_instruments` WRITE;
 /*!40000 ALTER TABLE `profile_instruments` DISABLE KEYS */;
-INSERT INTO `profile_instruments` VALUES (2,1),(4,2),(2,3),(1,4),(3,4),(3,5),(1,6),(3,7),(4,8);
 /*!40000 ALTER TABLE `profile_instruments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -364,7 +355,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -373,7 +364,6 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin','admin@suonacongigi.it','$2a$10$/nYvAhg65hs3TkbuxgBUMOaPdFLikW0BtD9Xp1rV4./eUbg9Fpumq','ADMIN','2026-04-28 13:04:32'),(2,'mario_gibson','mario@email.it','$2a$10$ua7ArtsoXeJl7EsYvdcYuetBWEvd7.TXJ9glZJfkBu.NZNH10GTNi','USER','2026-04-28 13:04:32'),(3,'elena_sax','elena@email.it','$2a$10$GRVl.x2kvlhrqew91q7VUuPmk6/Hx.8Y20Lp7UYH2SBC3fvpors6e','USER','2026-04-28 13:04:32'),(4,'luca_synth','luca@email.it','$2a$10$DYzrGECjKdYXWQpC8PG8AeKOjC4PeAGicRNJYN/3XKxUM5/GqH7v2','USER','2026-04-28 13:04:32');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -390,4 +380,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-04-28 15:09:50
+-- Dump completed on 2026-04-29 15:01:18

@@ -13,14 +13,19 @@ USE suonacongigi;
 
 -- ── 1. TABELLE INDIPENDENTI (nessuna FK) ────────────────────
 
-CREATE TABLE users (
-    id         BIGINT       AUTO_INCREMENT PRIMARY KEY,
-    username   VARCHAR(50)  NOT NULL UNIQUE,
-    email      VARCHAR(100) NOT NULL UNIQUE,
-    password   VARCHAR(255) NOT NULL,
-    role       VARCHAR(20)  NOT NULL,
-    created_at TIMESTAMP    DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB;
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE `users` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `role` varchar(20) NOT NULL,
+  `enabled` tinyint(1) NOT NULL DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE genres (
     id   BIGINT       AUTO_INCREMENT PRIMARY KEY,
