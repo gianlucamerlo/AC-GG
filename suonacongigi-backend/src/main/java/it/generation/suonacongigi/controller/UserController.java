@@ -126,4 +126,24 @@ public class UserController extends BaseController {
     userRepository.save(user);
 
     return ResponseEntity.ok("Utente disabilitato con successo"); }
+    
+    //ENPOINT PER ATTIVAZIONE UTENTE
+    @Operation(
+        summary = "Abilita utente(ADMIN)"
+    )
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Utente abilitato con successo"),
+        @ApiResponse(responseCode = "400", description = "Dati utente non validi"),
+        @ApiResponse(responseCode = "401", description = "Token non valido o assente")
+    })
+    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("/enable/{id}")
+    public ResponseEntity<?> enableUser(@PathVariable Long id) {   User user = userRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Utente non trovato"));
+
+    user.setEnabled(true);
+
+    userRepository.save(user);
+
+    return ResponseEntity.ok("Utente abilitato con successo"); }
 }
