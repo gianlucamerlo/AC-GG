@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
+import it.generation.suonacongigi.dto.CategoryRequest;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Objects;
@@ -22,6 +22,7 @@ public class ForumService {
     private final ForumThreadRepository threadRepository;
     private final PostRepository postRepository;
     private final UserRepository userRepository;
+    private final ForumCategoryRepository forumCategoryRepository;
 
     @Transactional(readOnly = true)
     public List<CategoryResponse> getCategories() {
@@ -165,4 +166,26 @@ public class ForumService {
         // La catena è sicura, ma certifichiamo il risultato
         return Objects.requireNonNull(user);
     }
+   public CategoryResponse createCategory(CategoryRequest req) {
+    ForumCategory category = new ForumCategory();
+    category.setName(req.name());
+    category.setDescription(req.description());
+    categoryRepository.save(category);
+    return toCategoryResponse(category);
+}
+
+public CategoryResponse updateCategory(Long id, CategoryRequest req) {
+    ForumCategory category = categoryRepository.findById(id)
+        .orElseThrow(() -> new NoSuchElementException("Categoria non trovata con id: " + id));
+    category.setName(req.name());
+    category.setDescription(req.description());
+    categoryRepository.save(category);
+    return toCategoryResponse(category);
+}
+
+public void deleteCategory(Long id) {
+    ForumCategory category = categoryRepository.findById(id)
+        .orElseThrow(() -> new NoSuchElementException("Categoria non trovata con id: " + id));
+    categoryRepository.delete(category);
+}
 }

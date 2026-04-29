@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Objects;
 
-// Questo controller gestisce le operazioni relative al forum, come la consultazione delle categorie, 
-// la visualizzazione dei thread, la creazione di nuove discussioni e l'aggiunta di post. 
+// Questo controller gestisce le operazioni relative al forum, come la consultazione delle categorie,
+// la visualizzazione dei thread, la creazione di nuove discussioni e l'aggiunta di post.
 // Alcuni endpoint richiedono autenticazione, mentre altri sono pubblici.
 @RestController
 @RequestMapping("/api/forum")
@@ -29,7 +29,7 @@ public class ForumController extends BaseController {
     // Iniezione del servizio che contiene la logica di business per il forum.
     private final ForumService forumService;
 
-    // Endpoint pubblico per ottenere la lista delle categorie del forum. 
+    // Endpoint pubblico per ottenere la lista delle categorie del forum.
     // Restituisce un elenco di categorie con i relativi ID e nomi.
     @Operation(summary = "Lista categorie")
     @ApiResponses({
@@ -38,7 +38,7 @@ public class ForumController extends BaseController {
     })
     @GetMapping("/categories")
     public ResponseEntity<ApiEnvelope<List<CategoryResponse>>> getCategories() {
-        // Il controller si limita a delegare la logica di recupero delle categorie al servizio, 
+        // Il controller si limita a delegare la logica di recupero delle categorie al servizio,
         // restituendo un ResponseEntity con il risultato.
         List<CategoryResponse> data = forumService.getCategories();
 
@@ -54,7 +54,7 @@ public class ForumController extends BaseController {
     })
     @GetMapping("/categories/{id}/threads")
     public ResponseEntity<ApiEnvelope<List<ThreadSummaryResponse>>> getThreads(@PathVariable Long id) {
-        // Il controller si limita a delegare la logica di recupero dei thread al servizio, 
+        // Il controller si limita a delegare la logica di recupero dei thread al servizio,
         // restituendo un ResponseEntity con il risultato.
         List<ThreadSummaryResponse> data = forumService.getThreadsByCategory(Objects.requireNonNull(id));
 
@@ -67,25 +67,25 @@ public class ForumController extends BaseController {
         @ApiResponse(responseCode = "200", description = "Dettaglio thread recuperato con successo"),
         @ApiResponse(responseCode = "404", description = "Thread non trovato"),
         @ApiResponse(responseCode = "500", description = "Errore interno del server")
-    }) 
+    })
     @GetMapping("/threads/{id}")
     public ResponseEntity<ApiEnvelope<ThreadDetailResponse>> getThread(
         @Parameter(description = "ID del thread da recuperare", example = "42")
-        @PathVariable Long id, 
+        @PathVariable Long id,
         @AuthenticationPrincipal User user) {
             // Se l'utente è autenticato, passiamo il suo username al servizio per verificare i permessi.
             String username = (user != null) ? user.getUsername() : null;
 
-            // Il controller si limita a delegare la logica di recupero dei dettagli del thread al servizio, 
+            // Il controller si limita a delegare la logica di recupero dei dettagli del thread al servizio,
             // restituendo un ResponseEntity con il risultato.
             ThreadDetailResponse data = forumService.getThreadDetail(Objects.requireNonNull(id), username);
 
             return ok(data, "Dettaglio thread recuperato con successo");
     }
 
-    // Endpoint protetto per creare una nuova discussione (thread) in una categoria specifica. 
-    // Accettando un DTO con i dati del thread, valida i dati e delega la logica al servizio. 
-    // Restituisce i dettagli del thread creato in caso di successo. 
+    // Endpoint protetto per creare una nuova discussione (thread) in una categoria specifica.
+    // Accettando un DTO con i dati del thread, valida i dati e delega la logica al servizio.
+    // Restituisce i dettagli del thread creato in caso di successo.
     // Accessibile solo agli utenti autenticati.
     @Operation(summary = "Nuova discussione")
     @ApiResponses({
@@ -98,18 +98,18 @@ public class ForumController extends BaseController {
         @Valid @RequestBody ThreadRequest req,
         @AuthenticationPrincipal User user) {
             // @Valid: Innesca il motore di validazione Bean Validation via Reflection sui metadati del DTO.
-            String username = Objects.requireNonNull(Objects.requireNonNull(user).getUsername());
+            String username = Objects.requireNonNull(user.getUsername());
             // Il controller si limita a delegare la logica di creazione del thread al servizio,
-            // restituendo un ResponseEntity con il risultato. 
+            // restituendo un ResponseEntity con il risultato.
             // La validazione dei dati avviene automaticamente grazie alle annotazioni di validazione sui campi del DTO.
             ThreadSummaryResponse data = forumService.createThread(Objects.requireNonNull(req), username);
 
             return ok(data, "Discussione creata con successo");
     }
 
-    // Endpoint protetto per rispondere a un thread esistente tramite ID. 
-    // Accetta un DTO con i dati del post, valida i dati e delega la logica al servizio. 
-    // Restituisce i dettagli del post creato in caso di successo. 
+    // Endpoint protetto per rispondere a un thread esistente tramite ID.
+    // Accetta un DTO con i dati del post, valida i dati e delega la logica al servizio.
+    // Restituisce i dettagli del post creato in caso di successo.
     // Accessibile solo agli utenti autenticati.
     @Operation(summary = "Rispondi")
     @ApiResponses({
@@ -125,21 +125,21 @@ public class ForumController extends BaseController {
         @Valid @RequestBody PostRequest req,
         @AuthenticationPrincipal User user) {
             // @Valid: Innesca il motore di validazione Bean Validation via Reflection sui metadati del DTO.
-            String username = Objects.requireNonNull(Objects.requireNonNull(user).getUsername());
+            String username = Objects.requireNonNull(user.getUsername());
             // Il controller si limita a delegare la logica di aggiunta del post al servizio,
-            // restituendo un ResponseEntity con il risultato. 
+            // restituendo un ResponseEntity con il risultato.
             // La validazione dei dati avviene automaticamente grazie alle annotazioni di validazione sui campi del DTO.
             PostResponse data = forumService.addPost(Objects.requireNonNull(id), Objects.requireNonNull(req), username);
 
             return ok(data, "Post aggiunto con successo");
     }
 
-    // Endpoint protetto per eliminare un post tramite ID. 
-    // Solo l'autore del post o un amministratore possono eliminarlo. 
+    // Endpoint protetto per eliminare un post tramite ID.
+    // Solo l'autore del post o un amministratore possono eliminarlo.
     // Accessibile solo agli utenti autenticati.
     @Operation(summary = "Elimina post")
     @ApiResponses({
-        @ApiResponse(responseCode = "204", description = "Post eliminato con successo"),
+        @ApiResponse(responseCode = "200", description = "Post eliminato con successo"),
         @ApiResponse(responseCode = "403", description = "Accesso negato"),
         @ApiResponse(responseCode = "404", description = "Post non trovato"),
         @ApiResponse(responseCode = "500", description = "Errore interno del server")
@@ -154,27 +154,30 @@ public class ForumController extends BaseController {
 
         // Il servizio si occuperà di verificare i permessi e l'esistenza del post
         forumService.deletePost(
-            Objects.requireNonNull(id), 
-            Objects.requireNonNull(user.getUsername()), 
+            Objects.requireNonNull(id),
+            Objects.requireNonNull(user.getUsername()),
             user.getRole() == User.Role.ADMIN);
-        
+
         // Se il servizio non ha lanciato eccezioni, significa che l'eliminazione è avvenuta con successo
         return ok(null, "Post eliminato con successo");
     }
 
-    // elimina il thread specificato tramite ID. Solo l'autore del thread o un amministratore possono eliminarlo.    @Operation(summary = "Elimina thread")
+    // Endpoint protetto per eliminare un thread tramite ID.
+    // Solo l'autore del thread o un amministratore possono eliminarlo.
+    // Accessibile solo agli utenti autenticati.
+    @Operation(summary = "Elimina thread")
     @ApiResponses({
         @ApiResponse(responseCode = "200", description = "Thread eliminato con successo"),
         @ApiResponse(responseCode = "403", description = "Accesso negato"),
-        @ApiResponse(responseCode = "404", description = "Thread non trovato"), 
+        @ApiResponse(responseCode = "404", description = "Thread non trovato"),
         @ApiResponse(responseCode = "500", description = "Errore interno del server")
     })
     @DeleteMapping("/threads/{id}")
     public ResponseEntity<ApiEnvelope<Void>> deleteThread(
         @Parameter(description = "ID del thread da eliminare", example = "42")
-        @PathVariable Long id, 
+        @PathVariable Long id,
         @AuthenticationPrincipal User user) {
-        
+
         Objects.requireNonNull(user);
 
         forumService.deleteThread(
@@ -182,8 +185,6 @@ public class ForumController extends BaseController {
             Objects.requireNonNull(user.getUsername()),
             user.getRole() == User.Role.ADMIN);
 
-
-            return ok(null, "Thread eliminato con successo");
-
-        }
+        return ok(null, "Thread eliminato con successo");
+    }
 }
