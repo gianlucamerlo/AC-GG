@@ -19,7 +19,7 @@
                [class.invalid]="isFieldInvalid('username')" />
         
         @if (isFieldInvalid('username')) {
-          <span class="hint-error">Username obbligatorio</span>
+          <span class="hint-error">{{ getErrorMessage('username') }}</span>
         }
       </div>
 
@@ -32,7 +32,7 @@
                [class.invalid]="isFieldInvalid('password')" />
         
         @if (isFieldInvalid('password')) {
-          <span class="hint-error">Password obbligatoria</span>
+          <span class="hint-error">{{ getErrorMessage('password') }}</span>
         }
       </div>
 

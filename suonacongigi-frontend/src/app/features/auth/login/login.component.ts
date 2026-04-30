@@ -15,8 +15,8 @@ export class LoginComponent extends BaseComponent {
 
   // Form reattivo
   public form = this.fb.nonNullable.group({
-    username: ['', Validators.required],
-    password: ['', Validators.required],
+    username: ['',  Validators.required],
+    password: ['',  Validators.required],
   });
 
   onSubmit(): void {
@@ -41,5 +41,16 @@ export class LoginComponent extends BaseComponent {
   isFieldInvalid(field: string): boolean {
     const control = this.form.get(field);
     return !!control && control.invalid && control.touched;
+  }
+
+  getErrorMessage(fieldName: string): string {
+    const control = this.form.get(fieldName);
+    if (!control || !control.errors) return '';
+
+    const errors = control.errors;
+
+    if (errors['required']) return 'Questo campo è obbligatorio';
+
+    return 'Campo non valido';
   }
 }

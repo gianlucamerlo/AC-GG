@@ -23,7 +23,7 @@ export class RegisterComponent extends BaseComponent {
 
   // Definizione del Form con struttura nidificata coerente con il DTO Java
   form = this.fb.nonNullable.group({
-    username:        ['', [Validators.required, Validators.minLength(3)]],
+    username:        ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
     email:           ['', [Validators.required, Validators.email]],
     password:        ['', [Validators.required, Validators.minLength(6)]],
     confirmPassword: ['', Validators.required],
@@ -77,5 +77,20 @@ export class RegisterComponent extends BaseComponent {
   isFieldInvalid(field: string): boolean {
     const control = this.form.get(field);
     return !!control && control.invalid && control.touched;
+  }
+
+  getErrorMessage(fieldName: string): string {
+    const control = this.form.get(fieldName);
+    if (!control || !control.errors) return '';
+
+    const errors = control.errors;
+
+    if (errors['required']) return 'Questo campo è obbligatorio';
+    if (errors['minlength']) return `Minimo ${errors['minlength'].requiredLength} caratteri`;
+    if (errors['maxlenght']) return `Massimo ${errors['maxlenght'].requiredLength} caratteri`;
+    if (errors['email']) return 'Formato email non valido';
+    if (errors['pattern']) return 'Formato non valido';
+
+    return 'Campo non valido';
   }
 }
