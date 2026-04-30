@@ -54,6 +54,15 @@ export const routes: Routes = [
     loadComponent: () => import('./features/events/event-form/event-form.component').then(m => m.EventFormComponent) 
   },
 
+  {
+  path: 'my-events',
+  canActivate: [authGuard],
+  loadComponent: () => import('./features/events/my-events/my-events.component')
+    .then(m => m.MyEventsComponent)
+  },
+
   // Catch-all: se l'utente digita roba a caso, torna in Home
   { path: '**', redirectTo: '' }
+
+  
 ];
