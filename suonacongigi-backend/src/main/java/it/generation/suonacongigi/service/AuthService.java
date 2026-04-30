@@ -9,14 +9,20 @@ import it.generation.suonacongigi.model.User;
 import it.generation.suonacongigi.repository.user.UserRepository;
 import it.generation.suonacongigi.security.JwtUtil;
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
+import org.springframework.web.server.ResponseStatusException;
+
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * ARCHITETTURA: Security Orchestrator.
@@ -56,6 +62,7 @@ public class AuthService {
                 .email(email)
                 .password(passwordEncoder.encode(password))
                 .role(User.Role.USER)
+                .enabled(true)
                 .build();
 
         // 4. Creazione MusicalProfile (con dati opzionali)
@@ -79,15 +86,21 @@ public class AuthService {
 
     public AuthResponse login(LoginRequest req) {
         Assert.notNull(req, "La richiesta non può essere nulla");
+
         
         String username = Objects.requireNonNull(req.getUsername());
         String password = Objects.requireNonNull(req.getPassword());
 
+        Optional<User> userLogged = this.userRepository.findByUsername(username);
+        if(userLogged.isEmpty()){throw new IllegalStateException("Credenziali errate."); }
+        else{if(!userLogged.get().isEnabled()){throw new IllegalStateException("Utente disabilitato");}}
         // MECCANICA: authManager delega a UserDetailsService (Reflection) la ricerca dell'utente
         // e al PasswordEncoder la verifica dell'hash.
+        try{
         Authentication auth = authManager.authenticate(
                 new UsernamePasswordAuthenticationToken(username, password));
-
+        
+    
         Object principal = auth.getPrincipal();
         Assert.notNull(principal, "Principal nullo");
         
@@ -98,6 +111,9 @@ public class AuthService {
         String token = Objects.requireNonNull(jwtUtil.generateToken(user));
 
         return toAuthResponse(user, token);
+        } catch (DisabledException e) {
+    throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Utente disabilitato");
+        }
     }
 
     private AuthResponse toAuthResponse(User user, String token) {

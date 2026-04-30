@@ -37,6 +37,10 @@ public class UserResponse {
     @NotBlank
     private String role;
 
+    @Schema(description = "Stato dell'utente", example = "true")
+    @NotBlank
+    private boolean enabled;
+
     // Il campo "musicalProfile" rappresenta i dettagli del profilo musicale dell'utente. È facoltativo.
     @Schema(description = "Dettagli del profilo musicale (generi, strumenti, artisti)")
     private MusicalProfileResponse musicalProfile;

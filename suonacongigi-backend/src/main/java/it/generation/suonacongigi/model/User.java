@@ -62,7 +62,8 @@ public class User implements UserDetails {
     private LocalDateTime createdAt;
 
     @Column(nullable = false)
-private boolean enabled = true;
+    @Builder.Default
+    private boolean enabled = true;
 
     // L'enum Role rappresenta i possibili ruoli di un utente: USER e ADMIN.
     public enum Role {
@@ -88,5 +89,5 @@ private boolean enabled = true;
     @Override public boolean isAccountNonExpired()      { return true; }
     @Override public boolean isAccountNonLocked()       { return true; }
     @Override public boolean isCredentialsNonExpired()  { return true; }
-    @Override public boolean isEnabled()                { return true; }
+    @Override public boolean isEnabled()                { return this.enabled; }
 }

@@ -53,7 +53,8 @@ public class AuthController extends BaseController {
     @Operation(summary = "Accesso utente (Login)")
     @ApiResponses({
         @ApiResponse(responseCode = "200", description = "Login effettuato con successo, restituisce Token JWT"),
-        @ApiResponse(responseCode = "401", description = "Credenziali non valide")
+        @ApiResponse(responseCode = "401", description = "Credenziali non valide"),
+        @ApiResponse(responseCode = "403", description = "Utente disabilitato")
     })
     @PostMapping("/login")
     public ResponseEntity<ApiEnvelope<AuthResponse>> login(@Valid @RequestBody LoginRequest req) { 

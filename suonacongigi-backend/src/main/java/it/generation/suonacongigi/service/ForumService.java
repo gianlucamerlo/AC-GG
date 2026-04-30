@@ -22,7 +22,6 @@ public class ForumService {
     private final ForumThreadRepository threadRepository;
     private final PostRepository postRepository;
     private final UserRepository userRepository;
-    private final ForumCategoryRepository forumCategoryRepository;
 
     @Transactional(readOnly = true)
     public List<CategoryResponse> getCategories() {
@@ -186,6 +185,6 @@ public CategoryResponse updateCategory(Long id, CategoryRequest req) {
 public void deleteCategory(Long id) {
     ForumCategory category = categoryRepository.findById(id)
         .orElseThrow(() -> new NoSuchElementException("Categoria non trovata con id: " + id));
-    categoryRepository.delete(category);
+    categoryRepository.delete(Objects.requireNonNull(category));
 }
 }
