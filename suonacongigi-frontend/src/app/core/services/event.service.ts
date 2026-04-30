@@ -39,4 +39,8 @@ export class EventService extends BaseService {
   unregister(id: number): Observable<void> {
     return this.doDelete<void>(`${id}/register`);
   }
+
+  getMyEvents(): Observable<EventResponse[]> {
+  return this.doGet<EventResponse[]>('my');
+  }
 }
