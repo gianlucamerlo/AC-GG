@@ -23,4 +23,7 @@ public interface EventRegistrationRepository extends JpaRepository<EventRegistra
     // evitando così il problema N+1 query quando si accede ai dati dell'utente associato a ciascuna registrazione.
     @EntityGraph(attributePaths = {"user"})
     List<EventRegistration> findAllByEventId(Long eventId);
+
+    @EntityGraph(attributePaths = {"event", "event.createdBy"})
+    List<EventRegistration> findAllByUserId(Long userId);
 }

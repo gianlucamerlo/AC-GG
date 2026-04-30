@@ -160,6 +160,16 @@ public class EventService {
                 .registeredByCurrentUser(isRegistered)
                 .build());
     }
+@Transactional(readOnly = true)
+public List<EventResponse> findMyEvents(String username) {
+    User user = userRepository.findByUsername(Objects.requireNonNull(username))
+        .orElseThrow(() -> new NoSuchElementException("Utente non trovato: " + username));
+
+    return registrationRepository.findAllByUserId(user.getId()).stream()
+        .map(reg -> toResponse(Objects.requireNonNull(reg.getEvent()), username))
+        .collect(Collectors.toList());
+}
+    
 
     private Event getOrThrow(Long id) {
         return Objects.requireNonNull(eventRepository.findById(id)

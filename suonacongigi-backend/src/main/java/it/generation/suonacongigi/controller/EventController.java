@@ -206,4 +206,17 @@ public class EventController extends BaseController {
             // Se il servizio non ha lanciato eccezioni, significa che l'eliminazione è avvenuta con successo
             return ok(null, "Evento eliminato con successo");
     }
+
+    @Operation(summary = "I miei eventi", description = "Restituisce gli eventi a cui l'utente autenticato è iscritto.")
+    @ApiResponses({
+        @ApiResponse(responseCode = "200", description = "Lista recuperata con successo"),
+        @ApiResponse(responseCode = "401", description = "Utente non autenticato")})
+
+    @GetMapping("/my")
+    public ResponseEntity<ApiEnvelope<List<EventResponse>>> getMyEvents(
+        @AuthenticationPrincipal User user) {
+    String username = Objects.requireNonNull(Objects.requireNonNull(user).getUsername());
+    List<EventResponse> data = eventService.findMyEvents(username);
+    return ok(data, "I tuoi eventi recuperati con successo");
+}
 }
