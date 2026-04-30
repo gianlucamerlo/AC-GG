@@ -1,0 +1,42 @@
+h1 {
+    color: #F699CD;
+    font-family: 'Metal Lord', sans-serif;
+    text-transform: uppercase;
+
+    text-shadow:
+            0 0 5px var(--primary),
+            0 0 15px var(--primary),
+            0 0 30px var(--primary);
+}
+
+.card-header .color-primary {
+    font-family: 'Metal Lord', sans-serif !important;
+    font-size: 2rem !important;
+    font-weight: 900 !important;
+    letter-spacing: 6px !important;
+    text-transform: uppercase !important;
+    display: block !important;
+    text-align: center !important;
+    color: #ff00ff !important;
+}
+
+/* Il contenitore della card */
+.card {
+    background-color: #121214; /* O il colore esatto della card sopra */
+    border: 1px solid var(--primary); /* Stesso bordo della card sopra */
+    border-radius: 8px; /* Stesso arrotondamento */
+
+    width: 100% !important; /* Forza l'espansione */
+    max-width: 1000px; /* Scegli tu la larghezza desiderata, es. 1000px o 1200px */
+    margin: 0 auto; /* La mantiene centrata nella pagina */
+
+    padding: 40px; /* Dà respiro al contenuto interno */
+    box-shadow: 0 0 15px rgba(255, 0, 255, 0.1); /* Un leggerissimo alone esterno opzionale */
+}
+
+/* Centriamo anche la descrizione sotto il titolo neon */
+.card-header p {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 1rem;
+}
