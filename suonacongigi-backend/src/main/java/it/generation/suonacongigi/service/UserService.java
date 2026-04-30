@@ -99,6 +99,7 @@ public class UserService {
                 .username(Objects.requireNonNull(user.getUsername()))
                 .email(Objects.requireNonNull(user.getEmail()))
                 .role(Objects.requireNonNull(user.getRole().name()))
+                .enabled(user.isEnabled())
                 .musicalProfile(mpr)
                 .build());
     }
