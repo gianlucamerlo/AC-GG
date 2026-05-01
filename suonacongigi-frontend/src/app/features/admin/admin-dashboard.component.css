@@ -1,0 +1,92 @@
+/* --- CONTENITORE GENERALE --- */
+.stats-container {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+/* --- LE CARD (Uniformate) --- */
+.stat-card, .card {
+    background-color: #121214 !important;
+    border: 1px solid #252525 !important;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    padding: 24px;
+    transition: all 0.3s ease;
+    color: white; /* Forza il testo chiaro */
+}
+
+/* Hover applicato a entrambe */
+.stat-card:hover, .card:hover {
+    transform: translateY(-5px);
+    border-color: #ff00ff !important;
+    box-shadow: 0 0 15px rgba(255, 0, 255, 0.2);
+}
+
+/* Titoli dentro le card */
+.stat-card h3, .card h3 {
+    color: #888 !important;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+/* Numeri/Valori dentro le card */
+.stat-card .value, .card .value {
+    color: #fff !important;
+    font-size: 2.5rem;
+    font-weight: bold;
+    font-family: 'Metal Lord', sans-serif;
+}
+
+/* --- TABELLA (Incollata allo stile delle card) --- */
+.table-container {
+    background-color: #121214 !important;
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid #252525 !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    margin-top: 30px;
+}
+
+table {
+    width: 100%;
+    background-color: transparent !important; /* Prende lo sfondo dal contenitore */
+    border-collapse: collapse;
+}
+
+tr {
+    background-color: transparent !important;
+}
+
+thead th {
+    background-color: #1c1c1e !important;
+    color: #ff00ff !important;
+    border-bottom: 2px solid #ff00ff !important;
+    padding: 15px;
+    text-align: left;
+}
+
+td {
+    border-bottom: 1px solid #252525;
+    padding: 15px;
+    color: #eee;
+}
+
+tr:hover td {
+    background-color: #1c1c1e !important;
+}
+
+/* --- BADGE (Look Neon) --- */
+.badge-admin {
+    background-color: rgba(255, 0, 255, 0.1) !important;
+    color: #ff00ff !important;
+    border: 1px solid #ff00ff !important;
+    box-shadow: 0 0 5px rgba(255, 0, 255, 0.5);
+}
+
+.badge-user {
+    background-color: rgba(0, 255, 255, 0.1) !important;
+    color: #00ffff !important;
+    border: 1px solid #00ffff !important;
+}

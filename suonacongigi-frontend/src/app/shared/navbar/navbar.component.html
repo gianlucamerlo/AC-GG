@@ -1,15 +1,15 @@
 <nav class="navbar">
-  <div class="navbar-brand">
-    <span class="logo-icon">🎸</span>
-    <span class="brand-name">Suona con Gigi</span>
-  </div>
+    <div class="navbar-brand">
+        <img src="images/guitarlogo.png" alt="Logo" class="logo-image">
+        <span class="brand-name">Suona con Gigi</span>
+    </div>
 
   @if (auth.isLoggedIn()) {
     <div class="navbar-links">
       <a routerLink="/events" routerLinkActive="active" class="nav-link">Eventi</a>
       <a routerLink="/forum"  routerLinkActive="active" class="nav-link">Forum</a>
       <a routerLink="/profile" routerLinkActive="active" class="nav-link">Profilo</a>
-      <a routerLink="/my-events" routerLinkActive="active" class="nav-link">I miei eventi</a>
+      
       @if (auth.isAdmin()) {
         <a routerLink="/admin" routerLinkActive="active" class="nav-link">Dashboard</a>
       }
