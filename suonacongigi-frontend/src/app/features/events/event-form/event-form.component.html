@@ -75,7 +75,7 @@
 
       <div class="form-actions mt-2">
         <a routerLink="/events" class="btn btn-outline">Annulla</a>
-        <button type="submit" class="btn btn-primary" [disabled]="loading.isLoading()">
+        <button type="submit" class="btn btn-primary" [disabled]="loading.isLoading() || form.invalid">
           {{ loading.isLoading() ? 'Salvataggio...' : (isEdit() ? 'Aggiorna Evento' : 'Pubblica Evento 🚀') }}
         </button>
       </div>
