@@ -27,7 +27,7 @@ export class MusicalProfileFormComponent extends BaseComponent implements OnInit
   artistSearchQuery = signal('');
 
   // Costanti per la logica della bio
-  readonly MAX_BIO_LENGTH         = 1000;
+  readonly MAX_BIO_LENGTH        = 500;
   readonly MAX_BIO_WARNING_LENGTH = 0.9 * this.MAX_BIO_LENGTH;
 
   // PERFORMANCE: Filtro computato

@@ -3,14 +3,14 @@
    ========================================================================== */
 :root {
   /* Colori Brand */
-  --primary:        #028090;
-  --primary-dark:   #005f6b;
-  --secondary:      #00BFB2;
-  --bg-app:         #F4F8F8;
-  --surface:        #ffffff;
+  --primary:        #ff00ff;
+  --primary-dark:   #330033;
+  --secondary:      #8B008B;
+  --bg-app:         #1c1c1e;
+  --surface:        #1a1a1a;
 
   /* Testo */
-  --text-main:      #333333;
+  --text-main:      #D3D3D3;
   --text-muted:     #666666;
   --text-light:     #8EA8B4;
   --text-error:     #e74c3c;
@@ -29,7 +29,7 @@
   --radius-lg:      12px;
   --shadow:         0 4px 6px -1px rgba(0, 0, 0, 0.1);
   --shadow-lg:      0 10px 25px -5px rgba(0, 0, 0, 0.1);
-  --border:         #D0E8E8;
+  --border:         #252525;
 
   /* Navbar Dark Theme */
   --navbar-bg:      #1B2A4A;
@@ -379,7 +379,7 @@ button:disabled, .btn:disabled {
   background-color: var(--secondary);
   border-color: var(--secondary);
   color: var(--primary-dark);
-  box-shadow: 0 4px 10px rgba(0, 191, 178, 0.2);
+  box-shadow: 0 4px 10px rgba(255, 0, 255, 0.4);
   transform: translateY(-1px);
 }
 
@@ -621,13 +621,16 @@ button:disabled, .btn:disabled {
 /* ==========================================================================
    5. FORM E INPUT (Inserimento Dati)
    ========================================================================== */
-.field { margin-bottom: 1.2rem; }
+.field { margin-bottom: 1.2rem;}
 
 .field label {
+  font-family: 'Metal Lord', sans-serif;
+  color: var(--primary); /* Fucsia */
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  letter-spacing: 2px;
   display: block;
-  margin-bottom: 0.4rem;
-  font-weight: 600;
-  font-size: 0.9rem;
+  margin-bottom: 12px;
 }
 
 .field input, 

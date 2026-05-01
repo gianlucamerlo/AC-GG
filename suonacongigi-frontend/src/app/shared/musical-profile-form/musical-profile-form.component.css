@@ -1,0 +1,91 @@
+/* --- SFONDO E CONTENITORE PRINCIPALE --- */
+.profile-container {
+    background-color: #1c1c1e; /* Nero assoluto */
+    color: #ffffff;
+    padding: 40px;
+}
+
+h1, h2 {
+    font-family: 'Metal Lord', sans-serif;
+    color: #ff00ff !important;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
+    margin-bottom: 30px;
+}
+
+/* --- LE CARD (Identità Musicale, ecc.) --- */
+.profile-card, .fade-in {
+    background-color: #121214 !important; /* Lo stesso grigio scuro della dashboard */
+    border: 1px solid #252525 !important;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8);
+    margin-bottom: 40px;
+}
+
+/* Colpisce i titoli dei campi */
+.form-label, label, .field-title {
+    font-family: 'Montserrat', sans-serif !important;
+    text-transform: uppercase; /* Per mantenerli imponenti */
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--primary); /* Mantiene il fucsia */
+}
+
+/* --- INPUT E TEXTAREA (La Bio) --- */
+textarea {
+    background-color: #1a1a1c !important;
+    border: 1px solid #333 !important;
+    color: #fff !important;
+    border-radius: 8px;
+    padding: 12px;
+}
+
+textarea:focus, input:focus {
+    border-color: #ff00ff !important;
+    outline: none;
+    box-shadow: 0 0 8px rgba(255, 0, 255, 0.3);
+}
+
+/* --- I TAG (Strumenti e Generi) --- */
+.tag-item, .instrument-badge, .genre-badge {
+    background-color: #1c1c1e !important;
+    color: #ffffff !important;
+    border: 1px solid #444 !important;
+    border-radius: 6px;
+    padding: 8px 15px;
+    transition: all 0.2s;
+}
+
+/* Quando un genere/strumento è SELEZIONATO (quelli verdi nel tuo screen) */
+.tag-selected, .active {
+    background-color: rgba(255, 0, 255, 0.3);
+    color: #8B008B;
+    border: 1px solid #8B008B;
+    box-shadow: 0 0 10px rgba(255, 0, 255, 0.3);
+}
+
+/* --- IL PULSANTE SALVA (Quello fucsia in fondo) --- */
+.save-button, .btn-primary {
+    background: linear-gradient(90deg, #ff00ff, #b300b3) !important;
+    border: none !important;
+    color: #000 !important;
+    font-weight: 900;
+    text-transform: uppercase;
+    padding: 15px 30px;
+    border-radius: 50px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.save-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px #ff00ff;
+}
+
+/* Icone (le emoji o le piccole icone vicino ai titoli) */
+.section-icon {
+    filter: drop-shadow(0 0 5px #ff00ff);
+    margin-right: 10px;
+}

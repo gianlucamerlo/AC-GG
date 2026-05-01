@@ -1,7 +1,7 @@
 <div [formGroup]="formGroup()" class="fade-in">
 
   <div class="field">
-    <label for="bio"><span>📖</span> La tua Bio Artistica</label>
+    <label>La tua Bio Artistica</label>
     <textarea id="bio" 
               formControlName="bio" trimValue rows="4"
               placeholder="Es: Bassista funk con 10 anni di esperienza..."
@@ -9,7 +9,7 @@
     </textarea>
     
     @if (formGroup().get('bio'); as bio) {
-      <div class="char-count" 
+      <div class="char-count"
        [class.warning]="bioLength >= MAX_BIO_WARNING_LENGTH && bioLength < MAX_BIO_LENGTH"
        [class.limit-reached]="bioLength >= MAX_BIO_LENGTH">
     {{ bioLength }} / {{ MAX_BIO_LENGTH }}
@@ -18,7 +18,7 @@
   </div>
 
   <div class="field">
-    <label><span>🌟</span> I tuoi Miti & Influenze</label>
+    <label>I tuoi Miti & Influenze</label>
     <div class="search-box">
       <input type="text"  trimValue
              [value]="artistSearchQuery()" 
@@ -47,7 +47,7 @@
   <div class="grid-2-col mt-2">
     
     <div class="field">
-      <label><span>🎹</span> Strumenti</label>
+      <label>Strumenti</label>
       <div class="tag-group">
         @for (ins of allInstruments(); track ins.id) {
           <button type="button" class="tag-item" 
@@ -60,7 +60,7 @@
     </div>
 
     <div class="field">
-      <label><span>🎧</span> Generi</label>
+      <label>Generi</label>
       <div class="tag-group">
         @for (gen of allGenres(); track gen.id) {
           <button type="button" class="tag-item" 
