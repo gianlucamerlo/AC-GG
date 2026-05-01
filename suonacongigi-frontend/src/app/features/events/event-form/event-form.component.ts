@@ -102,6 +102,7 @@ export class EventFormComponent extends BaseComponent implements OnInit {
     if (control?.hasError('required'))  return 'Campo obbligatorio';
     if (control?.hasError('minlength')) return `Minimo ${control.errors?.['minlength'].requiredLength} caratteri`;
     if (control?.hasError('min'))       return 'Il valore deve essere maggiore di 0';
+    if (control?.hasError('futureDate')) return 'La data non può essere precedente o uguale a quella odierna';
     return '';
   }
 

@@ -31,7 +31,7 @@
                  [class.invalid]="isFieldInvalid('eventDate')" />
           
           @if (isFieldInvalid('eventDate')) {
-            <span class="hint-error">Data obbligatoria</span>
+            <span class="hint-error">{{ getErrorMessage('eventDate')}}</span>
           }
         </div>
 
