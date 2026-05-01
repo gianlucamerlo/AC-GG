@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'Metal Lord';
-    src: url('public/fonts/Metal Lord.ttf') format('truetype');
+    src: url('/public/fonts/Metal Lord.ttf') format('truetype');
 }/* --- CONTENITORE PRINCIPALE --- */
 .navbar {
     display: flex;
