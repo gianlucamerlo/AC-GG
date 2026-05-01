@@ -1,6 +1,13 @@
 import { Component, inject, OnInit, signal, computed } from '@angular/core';
 import { RouterLink, ActivatedRoute } from '@angular/router';
-import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
+import {
+  ReactiveFormsModule,
+  FormBuilder,
+  Validators,
+  ValidatorFn,
+  AbstractControl,
+  ValidationErrors
+} from '@angular/forms';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { DatePipe } from '@angular/common';
 import { EventService } from '../../../core/services/event.service';
@@ -23,7 +30,7 @@ export class EventFormComponent extends BaseComponent implements OnInit {
   form = this.fb.nonNullable.group({
     title:       ['', [Validators.required, Validators.minLength(3)]],
     description: [''],
-    eventDate:   ['', Validators.required],
+    eventDate:   ['', [Validators.required, this.futureDateValidator()]],
     location:    [''],
     maxSeats:    [50, [Validators.required, Validators.min(1)]],
   });
@@ -96,5 +103,16 @@ export class EventFormComponent extends BaseComponent implements OnInit {
     if (control?.hasError('minlength')) return `Minimo ${control.errors?.['minlength'].requiredLength} caratteri`;
     if (control?.hasError('min'))       return 'Il valore deve essere maggiore di 0';
     return '';
+  }
+
+  futureDateValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const dateTime = new Date();
+      if (!control.value) return null;
+
+      const inputDate = new Date(control.value);
+      if (dateTime >= inputDate) return {futureDate: {value: control.value}};
+      return null;
+    }
   }
 }
