@@ -1,5 +1,13 @@
-/* ==========================================================================
-   1. TAVOLOZZA COLORI E VARIABILI (Il DNA dell'App)
+@font-face {
+  font-family: 'Metal Lord';
+  /* Usiamo il percorso assoluto dalla root.
+     Assicurati di aver rinominato il file togliendo lo spazio! */
+  src: url('../public/fonts/Metal Lord.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* Migliora le performance di caricamento */
+}/* ==========================================================================
+   TAVOLOZZA COLORI E VARIABILI (Il DNA dell'App)
    ========================================================================== */
 :root {
   /* Colori Brand */

@@ -1,7 +1,4 @@
-@font-face {
-    font-family: 'Metal Lord';
-    src: url('/public/fonts/Metal Lord.ttf') format('truetype');
-}/* --- CONTENITORE PRINCIPALE --- */
+/* --- CONTENITORE PRINCIPALE --- */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -24,7 +21,7 @@
 }
 
 .brand-name {
-    font-family: 'Metal Lord', cursive;
+    font-family: 'Metal Lord', sans-serif;
 
     color: #ff00ff;
     font-size: 2.5rem;
