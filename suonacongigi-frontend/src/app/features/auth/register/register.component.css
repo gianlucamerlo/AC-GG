@@ -1,0 +1,45 @@
+/* --- REGISTRAZIONE E LOGIN: SISTEMA INPUT E TESTI --- */
+
+/* 1. Applica Montserrat e fucsia ai titoli delle sezioni */
+.auth-header h2,
+.section-form h3 {
+    font-family: 'Montserrat', sans-serif !important;
+    letter-spacing: 1px !important;
+    color: #ff00ff !important;
+    text-transform: uppercase !important;
+}
+
+/* 2. Forza gli INPUT a essere leggibili (Sfondo scuro, testo fucsia) */
+.auth-card input[type="text"],
+.auth-card input[type="email"],
+.auth-card input[type="password"] {
+    background-color: #1a1a1a !important; /* Grigio molto scuro */
+    color: #ff00ff !important;           /* TESTO FUCSIA */
+    border: 1px solid #444 !important;
+    padding: 12px !important;
+    font-family: 'Montserrat', sans-serif !important;
+    caret-color: #ff00ff !important;     /* Cursore fucsia */
+}
+
+/* 3. Placeholder (testo grigio chiaro per non confondersi col fucsia) */
+.auth-card input::placeholder {
+    color: #888 !important;
+}
+
+/* 4. Etichette (Username, Email, etc.) - Bianche per contrasto */
+.auth-card .field label {
+    color: #ff00ff !important;
+    font-weight: 500;
+}
+
+/* 5. Tasto "Torna alla home" (il bottone blu che ti dava fastidio) */
+button.btn-action.btn-view {
+    background-color: #000000 !important;
+    border: 1px solid #ff00ff !important;
+    color: #ff00ff !important;
+}
+
+button.btn-action.btn-view:hover {
+    background-color: #ff00ff !important;
+    color: #000000 !important;
+}
