@@ -48,15 +48,15 @@ export class ForumService extends BaseService {
     // Percorso: forum/posts/{id}
     return this.doDelete<void>(`posts/${id}`);
   }
-  createCategory(data: { name: string; description: string }) {
-  return this.http.post('/api/forum/categories', data);
-  }
+  createCategory(data: { name: string; description: string }): Observable<CategoryResponse> {
+  return this.doPost<CategoryResponse>('categories', data);
+}
 
-  updateCategory(id: number, data: { name: string; description: string }) {
-  return this.http.put(`/api/forum/categories/${id}`, data);
-  }
+updateCategory(id: number, data: { name: string; description: string }): Observable<CategoryResponse> {
+  return this.doPut<CategoryResponse>(`categories/${id}`, data);
+}
 
-  deleteCategory(id: number) {
-  return this.http.delete(`/api/forum/categories/${id}`);
-  }
+deleteCategory(id: number): Observable<void> {
+  return this.doDelete<void>(`categories/${id}`);
+}
 }
