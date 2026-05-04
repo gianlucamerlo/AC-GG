@@ -1,26 +1,7 @@
-<<<<<<< HEAD
-# Java / Maven 
-suonacongigi-backend/target/
-
-# IntelliJ
-.idea/
-*.iml
-
-# VS Code
-.vscode/
-**/.vscode/
-**/launch.json
-
-# Angular
-suonacongigi-frontend/node_modules/
-suonacongigi-frontend/dist/
-
 # Variabili d'ambiente
 .env
 *.env
 suonacongigi-backend/src/main/resources/application.properties
-=======
-# See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # Compiled output
 /dist
@@ -46,7 +27,6 @@ yarn-error.log
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
-!.vscode/launch.json
 !.vscode/extensions.json
 .history/*
 
@@ -63,7 +43,9 @@ testem.log
 .DS_Store
 Thumbs.db
 
-
 # Extensions
 .VSCodeCounter/*
->>>>>>> a84b596ad5d56e25c7f35743a138de573bd7b3af
+
+# Backend
+suonacongigi-backend/.vscode/
+suonacongigi-backend/target/
