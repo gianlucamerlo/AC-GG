@@ -5,7 +5,6 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import it.generation.suonacongigi.dto.CategoryRequest;
 import it.generation.suonacongigi.dto.common.ApiEnvelope;
 import it.generation.suonacongigi.dto.forum.*;
 import it.generation.suonacongigi.model.User;
@@ -136,6 +135,28 @@ public class ForumController extends BaseController {
             return ok(data, "Post aggiunto con successo");
     }
 
+    // Endpoint protetto per creare una nuova categoria .
+    @Operation(summary = "Nuova categoria")
+    @ApiResponses({
+        @ApiResponse(responseCode = "200", description = "Categoria creata con successo"),
+        @ApiResponse(responseCode = "400", description = "Dati non validi"),
+        @ApiResponse(responseCode = "500", description = "Errore interno del server")
+    })
+    @PostMapping("/categories")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<ApiEnvelope<CategoryResponse>> createCategory(
+        @Valid @RequestBody CategoryRequest req,
+        @AuthenticationPrincipal User user) {
+            // @Valid: Innesca il motore di validazione Bean Validation via Reflection sui metadati del DTO.
+            // Il controller si limita a delegare la logica di creazione del thread al servizio,
+            // restituendo un ResponseEntity con il risultato.
+            // La validazione dei dati avviene automaticamente grazie alle annotazioni di validazione sui campi del DTO.
+            CategoryResponse data = forumService.createCategory(Objects.requireNonNull(req));
+
+            return ok(data, "Categoria creata con successo");
+    }
+    
+
     // Endpoint protetto per eliminare un post tramite ID.
     // Solo l'autore del post o un amministratore possono eliminarlo.
     // Accessibile solo agli utenti autenticati.
@@ -189,50 +210,4 @@ public class ForumController extends BaseController {
 
         return ok(null, "Thread eliminato con successo");
     }
-    // Endpoint admin: crea una nuova categoria forum.
-// Accessibile solo agli amministratori.
-@Operation(summary = "Crea categoria")
-@ApiResponses({
-    @ApiResponse(responseCode = "200", description = "Categoria creata con successo"),
-    @ApiResponse(responseCode = "400", description = "Dati non validi"),
-    @ApiResponse(responseCode = "403", description = "Accesso negato")
-})
-@PostMapping("/categories")
-@PreAuthorize("hasRole('ADMIN')")
-public ResponseEntity<ApiEnvelope<CategoryResponse>> createCategory(
-    @Valid @RequestBody CategoryRequest req) {
-        CategoryResponse data = forumService.createCategory(Objects.requireNonNull(req));
-        return ok(data, "Categoria creata con successo");
-}
-
-// Endpoint admin: modifica una categoria esistente tramite ID.
-@Operation(summary = "Modifica categoria")
-@ApiResponses({
-    @ApiResponse(responseCode = "200", description = "Categoria aggiornata con successo"),
-    @ApiResponse(responseCode = "400", description = "Dati non validi"),
-    @ApiResponse(responseCode = "404", description = "Categoria non trovata"),
-    @ApiResponse(responseCode = "403", description = "Accesso negato")
-})
-@PutMapping("/categories/{id}")
-@PreAuthorize("hasRole('ADMIN')")
-public ResponseEntity<ApiEnvelope<CategoryResponse>> updateCategory(
-    @PathVariable Long id,
-    @Valid @RequestBody CategoryRequest req) {
-        CategoryResponse data = forumService.updateCategory(Objects.requireNonNull(id), Objects.requireNonNull(req));
-        return ok(data, "Categoria aggiornata con successo");
-}
-
-// Endpoint admin: elimina una categoria tramite ID.
-@Operation(summary = "Elimina categoria")
-@ApiResponses({
-    @ApiResponse(responseCode = "200", description = "Categoria eliminata con successo"),
-    @ApiResponse(responseCode = "404", description = "Categoria non trovata"),
-    @ApiResponse(responseCode = "403", description = "Accesso negato")
-})
-@DeleteMapping("/categories/{id}")
-@PreAuthorize("hasRole('ADMIN')")
-public ResponseEntity<ApiEnvelope<Void>> deleteCategory(@PathVariable Long id) {
-    forumService.deleteCategory(Objects.requireNonNull(id));
-    return ok(null, "Categoria eliminata con successo");
-}
 }

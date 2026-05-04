@@ -1,5 +1,6 @@
 package it.generation.suonacongigi.service;
 
+import it.generation.suonacongigi.dto.forum.CategoryRequest;
 import it.generation.suonacongigi.dto.forum.*;
 import it.generation.suonacongigi.model.*;
 import it.generation.suonacongigi.repository.user.UserRepository;
@@ -8,7 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import it.generation.suonacongigi.dto.CategoryRequest;
+
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Objects;
@@ -29,6 +30,7 @@ public class ForumService {
                 .map(this::toCategoryResponse)
                 .collect(Collectors.toList()));
     }
+
 
     @Transactional(readOnly = true)
     public List<ThreadSummaryResponse> getThreadsByCategory(Long categoryId) {
@@ -165,6 +167,7 @@ public class ForumService {
         // La catena è sicura, ma certifichiamo il risultato
         return Objects.requireNonNull(user);
     }
+
    public CategoryResponse createCategory(CategoryRequest req) {
     ForumCategory category = new ForumCategory();
     category.setName(req.name());
