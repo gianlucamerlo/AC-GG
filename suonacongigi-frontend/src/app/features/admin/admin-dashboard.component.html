@@ -53,34 +53,45 @@
     </div>
 
     <div class="mt-2">
-      <h2 class="mb-1">👤 Utenti</h2>
-      <div class="table-wrapper">
-        <table>
-          <thead>
-            <tr>
-              <th>Username</th>
-              <th>Email</th>
-              <th class="text-center">Ruolo</th>
-              <th>Stato</th>
-            </tr>
-          </thead>
-          <tbody>
-            @for (u of s.recentUsers; track u.id) {
-              <tr>
-                <td>{{ u.username }}</td>
-                <td>{{ u.email }}</td>
-                <td class="text-center">
-                  <span class="badge" [class.badge-error]="u.role === 'ADMIN'" [class.badge-success]="u.role !== 'ADMIN'">
-                    {{ u.role }}
-                  </span>
-                </td>
-                <td>{{ u.enabled }}</td>
-              </tr>
-            }
-          </tbody>
-        </table>
-      </div>
-    </div>
+  <h2 class="mb-1">👤 Utenti</h2>
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Email</th>
+          <th class="text-center">Ruolo</th>
+          <th class="text-center">Stato</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (u of users(); track u.id) {
+          <tr>
+            <td>{{ u.username }}</td>
+            <td>{{ u.email }}</td>
+            <td class="text-center">
+              <span class="badge"
+                [class.badge-error]="u.role === 'ADMIN'"
+                [class.badge-success]="u.role !== 'ADMIN'">
+                {{ u.role }}
+              </span>
+            </td>
+            <td class="text-center">
+              <button
+                class="badge"
+                [class.badge-success]="u.enabled"
+                [class.badge-error]="!u.enabled"
+                (click)="toggleEnabled(u)"
+                [disabled]="u.role === 'ADMIN'">
+                {{ u.enabled ? 'Attivo' : 'Disabilitato' }}
+              </button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
   } @else {
     <div class="text-center mt-2">
       <p class="text-muted">Recupero dati dal backstage...</p>

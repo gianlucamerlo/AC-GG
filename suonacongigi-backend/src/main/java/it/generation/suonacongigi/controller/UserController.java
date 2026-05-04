@@ -15,6 +15,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.lang.NonNull;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.transaction.annotation.Transactional;
@@ -116,17 +117,14 @@ public class UserController extends BaseController {
     
     })
     @PreAuthorize("hasRole('ADMIN')")
-    @PutMapping("/disable/{id}")
-    public ResponseEntity<?> disableUser(@PathVariable Long id) {
-           User user = userRepository.findById(Objects.requireNonNull(id))
-            .orElseThrow(() -> new RuntimeException("Utente non trovato"));
-
+@PutMapping("/disable/{id}")
+public ResponseEntity<ApiEnvelope<String>> disableUser(@PathVariable @NonNull Long id) {
+    User user = userRepository.findById(id)
+        .orElseThrow(() -> new RuntimeException("Utente non trovato"));
     user.setEnabled(false);
-
     userRepository.save(user);
-
-    return ResponseEntity.ok("Utente disabilitato con successo"); }
-    
+    return ok("Utente disabilitato con successo", "Utente disabilitato con successo");
+}
     //ENPOINT PER ATTIVAZIONE UTENTE
     @Operation(
         summary = "Abilita utente(ADMIN)"
@@ -137,14 +135,12 @@ public class UserController extends BaseController {
         @ApiResponse(responseCode = "401", description = "Token non valido o assente")
     })
     @PreAuthorize("hasRole('ADMIN')")
-    @PutMapping("/enable/{id}")
-    public ResponseEntity<?> enableUser(@PathVariable Long id) {   
-        User user = userRepository.findById(Objects.requireNonNull(id))
-            .orElseThrow(() -> new RuntimeException("Utente non trovato"));
-
+@PutMapping("/enable/{id}")
+public ResponseEntity<ApiEnvelope<String>> enableUser(@PathVariable @NonNull Long id) {
+    User user = userRepository.findById(id)
+        .orElseThrow(() -> new RuntimeException("Utente non trovato"));
     user.setEnabled(true);
-
     userRepository.save(user);
-
-    return ResponseEntity.ok("Utente abilitato con successo"); }
-}
+    return ok("Utente abilitato con successo", "Utente abilitato con successo");
+}}
+    

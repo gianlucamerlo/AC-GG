@@ -15,4 +15,16 @@ export class UserService extends BaseService {
   updateMusicalProfile(data: any): Observable<UserProfile> {
     return this.doPut<UserProfile>('me', data);
   }
+
+  getAll(): Observable<UserProfile[]> {
+    return this.doGet<UserProfile[]>('');
+  }
+
+  enableUser(id: number): Observable<any> {
+    return this.doPut<any>(`enable/${id}`, {});
+  }
+
+  disableUser(id: number): Observable<any> {
+    return this.doPut<any>(`disable/${id}`, {});
+  }
 }
