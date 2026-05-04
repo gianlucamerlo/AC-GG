@@ -1,20 +1,20 @@
-﻿# Compiled
-target/
-
-# VS Code (contiene credenziali!)
-.vscode/
+﻿#git add suonacongigi-backend/.gitignore Java / Maven 
+suonacongigi-backend/target/
 
 # IntelliJ
 .idea/
 *.iml
 
-# Logs
-*.log
+# VS Code
+.vscode/
+**/.vscode/
+**/launch.json
 
-# Env
+# Angular
+suonacongigi-frontend/node_modules/
+suonacongigi-frontend/dist/
+
+# Variabili d'ambiente
 .env
 *.env
-
-# OS
-.DS_Store
-Thumbs.db
+suonacongigi-backend/src/main/resources/application.properties
