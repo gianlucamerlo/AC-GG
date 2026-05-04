@@ -190,4 +190,6 @@ public void deleteCategory(Long id) {
         .orElseThrow(() -> new NoSuchElementException("Categoria non trovata con id: " + id));
     categoryRepository.delete(Objects.requireNonNull(category));
 }
+
+
 }

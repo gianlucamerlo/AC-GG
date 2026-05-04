@@ -11,6 +11,8 @@ import it.generation.suonacongigi.model.User;
 import it.generation.suonacongigi.service.ForumService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.context.support.BeanDefinitionDsl.Role;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -209,5 +211,27 @@ public class ForumController extends BaseController {
             user.getRole() == User.Role.ADMIN);
 
         return ok(null, "Thread eliminato con successo");
+    }
+
+
+    @Operation(summary = "Elimina categoria")
+    @ApiResponses({
+        @ApiResponse(responseCode = "200", description = "Categoria eliminata con successo"),
+        @ApiResponse(responseCode = "403", description = "Accesso negato"),
+        @ApiResponse(responseCode = "404", description = "Categoria non trovata"),
+        @ApiResponse(responseCode = "500", description = "Errore interno del server")
+    })
+    @DeleteMapping("/categories/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<ApiEnvelope<Void>> deleteCategory(
+        @Parameter(description = "ID della categoria da eliminare", example = "42")
+        @PathVariable Long id,
+        @AuthenticationPrincipal User user) {
+
+        Objects.requireNonNull(user);
+
+        forumService.deleteCategory(
+            Objects.requireNonNull(id));
+            return ok(null, "Categoria eliminata con successo");
     }
 }
