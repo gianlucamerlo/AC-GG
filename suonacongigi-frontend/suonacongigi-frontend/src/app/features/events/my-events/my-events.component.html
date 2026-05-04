@@ -1,0 +1,28 @@
+<div class="container my-4">
+  <h2>I miei eventi</h2>
+
+  @if (events().length === 0) {
+    <p class="text-muted">Non sei iscritto a nessun evento ancora. 
+      <a routerLink="/events">Scopri gli eventi disponibili</a>
+    </p>
+  }
+
+  @for (event of events(); track event.id) {
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title">{{ event.title }}</h5>
+        <p class="card-text">{{ event.description }}</p>
+        <p class="text-muted">
+          📅 {{ event.eventDate | date:'dd/MM/yyyy HH:mm' }} &nbsp;|&nbsp;
+          📍 {{ event.location }}
+        </p>
+        <button 
+          class="btn btn-outline-danger btn-sm"
+          [disabled]="actionLoading()[event.id]"
+          (click)="unregister(event)">
+          {{ actionLoading()[event.id] ? 'Caricamento...' : 'Disdici iscrizione' }}
+        </button>
+      </div>
+    </div>
+  }
+</div>
