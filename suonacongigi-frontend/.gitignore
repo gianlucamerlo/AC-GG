@@ -44,3 +44,4 @@ Thumbs.db
 
 # Extensions
 .VSCodeCounter/*
+node_modules/
