@@ -1,0 +1,150 @@
+/* --- CONTENITORE PRINCIPALE --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    height: 80px;
+    background-color: #000000; /* Nero Rock */
+    border-bottom: 4px solid #ff00ff; /* Linea Fucsia */
+    box-shadow: 0 0 20px rgba(255, 0, 255, 0.3);
+    width: 100%;
+    box-sizing: border-box;
+    position: relative; /* Necessario per centrare i link in modo assoluto */
+}
+
+/* --- LOGO / BRAND --- */
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Più spazio tra la chitarra e il testo "Suona con Gigi" */
+}
+
+.brand-name {
+    font-family: 'Metal Lord', sans-serif;
+
+    color: #ff00ff;
+    font-size: 2.0rem;
+    text-transform: uppercase;
+
+    /* Effetto "Tagliente": incliniamo leggermente le lettere */
+    display: inline-block;
+    transform: skewX(-10deg);
+
+    /* Bagliore neon fucsia per farlo "vibrare" */
+    text-shadow:
+            2px 2px 0px #000,
+            0 0 10px #C000A0,
+            0 0 20px #C000A0;
+
+    letter-spacing: 1px;
+    line-height: 1;
+}
+
+.logo-image {
+    height: 65px;
+    width: auto;
+    filter: none;
+    transition: transform 0.3s ease;
+}
+
+/* --- LINK CENTRALI (Il cuore della Navbar) --- */
+.navbar-links {
+    display: flex;
+    gap: 50px; /* Molto più spazio tra Eventi, Forum, Profilo ecc. */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.nav-link {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1.2rem; /* Scritte più grandi e leggibili */
+    padding: 10px 15px;
+    letter-spacing: 2px; /* Lettere un po' più larghe stile rock */
+    transition: 0.3s;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: #ff00ff !important;
+    text-shadow: 0 0 10px #ff00ff;
+}
+
+/* Stato attivo (pagina selezionata) */
+.nav-link.active {
+    color: #ff00ff !important;
+    text-shadow: 0 0 10px #ff00ff;
+    border-bottom: 2px solid #ff00ff;
+}
+
+/* --- PARTE UTENTE / LOGOUT (Destra) --- */
+.navbar-user {
+    display: flex;
+    align-items: center;
+    /* Aumentato lo spazio tra nome utente e tasto Esci */
+    gap: 25px;
+    z-index: 2;
+    min-width: 250px; /* Allargato un po' per far stare tutto bene */
+    justify-content: flex-end;
+}
+
+.username {
+    color: white;
+    font-weight: 600;
+    /* Anche il nome utente un po' più grande */
+    font-size: 1rem;
+}
+
+.badge-nav {
+    font-size: 0.9rem;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background-color: #333;
+    margin-left: 5px;
+}
+
+.badge-nav.admin {
+    background-color: #ff00ff;
+    color: black;
+}
+
+.btn-logout {
+    background: transparent;
+    border: 1px solid #ff00ff;
+    color: #ff00ff;
+    padding: 8px 17px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-logout:hover {
+    background-color: #ff00ff;
+    color: black;
+}
+
+/* --- PULSANTE REGISTRATI (Se presente) --- */
+.btn-primary {
+    background-color: #ff00ff !important;
+    color: #000000 !important;
+    border: none !important;
+    font-weight: 900;
+    padding: 10px 20px !important;
+    text-transform: uppercase;
+}
+
+/* --- RESPONSIVITÀ (Tablet/Mobile) --- */
+@media (max-width: 1100px) {
+    .navbar-links {
+        position: static;
+        transform: none;
+        gap: 10px;
+    }
+    .navbar {
+        padding: 0 20px;
+    }
+}

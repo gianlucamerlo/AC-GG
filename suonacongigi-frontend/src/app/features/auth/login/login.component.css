@@ -1,0 +1,24 @@
+/* Stile per gli input: testo bianco e sfondo leggermente più chiaro del nero di sfondo */
+input {
+    background-color: #1a1a1a; /* Grigio scuro, non nero puro */
+    color: #ffffff;           /* Testo bianco per leggibilità */
+    border: 1px solid #333;   /* Bordo visibile */
+    padding: 12px;
+    border-radius: 8px;
+    width: 100%;
+}
+
+/* Quando l'input è selezionato (focus), diamogli un tocco fucsia come nel resto del sito */
+input:focus {
+    outline: none;
+    border-color: #ff00ff;
+    box-shadow: 0 0 5px rgba(255, 0, 255, 0.5);
+}
+.auth-header h2 {
+    font-family: 'Montserrat', sans-serif; /* Assicurati di averlo importato o installato */
+    letter-spacing: 2px;                  /* La tua lieve spaziatura */
+    color: #ff00ff;                       /* Fucsia Rock */
+    text-transform: uppercase;            /* Opzionale, ma sta bene col tema */
+    margin-bottom: 5px;
+}
+
