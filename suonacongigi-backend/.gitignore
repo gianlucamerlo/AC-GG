@@ -1,20 +1,20 @@
-﻿#git add suonacongigi-backend/.gitignore Java / Maven 
-suonacongigi-backend/target/
+﻿# Compiled
+target/
+
+# VS Code (contiene credenziali!)
+.vscode/
 
 # IntelliJ
 .idea/
 *.iml
 
-# VS Code
-.vscode/
-**/.vscode/
-**/launch.json
+# Logs
+*.log
 
-# Angular
-suonacongigi-frontend/node_modules/
-suonacongigi-frontend/dist/
-
-# Variabili d'ambiente
+# Env
 .env
 *.env
-suonacongigi-backend/src/main/resources/application.properties
+
+# OS
+.DS_Store
+Thumbs.db
