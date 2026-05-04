@@ -14,12 +14,13 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Builder
 public class EventRequest {
     // Il campo "title" rappresenta il titolo dell'evento.
-    @Schema
+    @Schema(description = "Titolo dell'evento", example = "Concerto di Natale")
     @NotBlank @Size(min = 5, max = 100)
     private String title;
 
     // Il campo "description" rappresenta la descrizione dell'evento.
-    @Schema
+    @Schema(description = "Descrizione dell'evento", example = "Concerto di Natale con l'Orchestra Sinfonica di Milano")
+    @Size(max = 1000)
     private String description;
 
     // Il campo "eventDate" rappresenta la data e ora dell'evento. 
