@@ -1,0 +1,20 @@
+﻿# Compiled
+target/
+
+# VS Code (contiene credenziali!)
+.vscode/
+
+# IntelliJ
+.idea/
+*.iml
+
+# Logs
+*.log
+
+# Env
+.env
+*.env
+
+# OS
+.DS_Store
+Thumbs.db
