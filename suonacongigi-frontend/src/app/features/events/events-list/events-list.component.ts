@@ -5,11 +5,13 @@ import { finalize } from 'rxjs'; // Cruciale per spegnere i caricamenti
 import { EventService } from '../../../core/services/event.service';
 import { EventResponse } from '../../../core/models/event.model';
 import { BaseComponent } from '../../../shared/base.component';
+import { FormsModule } from '@angular/forms';
+import { computed } from '@angular/core';
 
 @Component({
   selector: 'app-events-list',
   standalone: true,
-  imports: [RouterLink, DatePipe, SlicePipe],
+  imports: [RouterLink, DatePipe, SlicePipe, FormsModule],
   templateUrl: './events-list.component.html',
   styleUrls: ['./events-list.component.css']
 })
@@ -21,6 +23,18 @@ export class EventsListComponent extends BaseComponent implements OnInit {
   
   // Feedback granulare sui singoli bottoni (evita che cliccando uno si blocchino tutti)
   actionLoading = signal<Record<number, boolean>>({});
+  
+  searchQuery = signal<string>('');
+
+filteredEvents = computed(() => {
+  const query = this.searchQuery().toLowerCase().trim();
+  if (!query) return this.events();
+  return this.events().filter(e =>
+    e.title.toLowerCase().includes(query) ||
+    e.description.toLowerCase().includes(query) ||
+    e.location.toLowerCase().includes(query)
+  );
+});
 
   ngOnInit(): void {
     this.loadEvents();
