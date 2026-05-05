@@ -11,8 +11,6 @@ import it.generation.suonacongigi.model.User;
 import it.generation.suonacongigi.service.ForumService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-
-import org.springframework.context.support.BeanDefinitionDsl.Role;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
