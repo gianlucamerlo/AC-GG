@@ -1,40 +1,97 @@
-/* Anteprima specifica dell'evento */
-.preview-box {
-    background: var(--bg-app);
-    border-radius: var(--radius);
-    padding: 1rem 1.2rem;
-    margin: 1.5rem 0;
-    border-left: 4px solid var(--primary);
+/* 1. FONT: Metal Lord per i titoli della pagina */
+.page-header h1 {
+    font-family: 'Metal Lord', sans-serif !important;
+    color: #ff00ff;
+    letter-spacing: 2px;
 }
 
-.preview-label { 
-    font-size: .75rem; 
-    color: var(--text-muted); 
-    margin-bottom: .5rem; 
-    font-weight: 700; 
+/* 2. FONT: Montserrat per le etichette (label) e i testi */
+.field label,
+.preview-label,
+.btn {
+    font-family: 'Montserrat', sans-serif !important;
     text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: 1rem;
 }
 
-.preview-title { 
-    font-weight: 800; 
-    color: var(--primary); 
-    font-size: 1.2rem; 
-    margin-bottom: 0.3rem;
+/* 3. INPUT: Risoluzione "Testo nero su nero" */
+.field input,
+.field textarea {
+    background-color: #1a1a1e !important; /* Grigio scuro per contrasto */
+    color: #ffffff !important;           /* Testo BIANCO per leggibilità */
+    border: 1px solid #333 !important;
+    padding: 12px !important;
+    border-radius: 8px !important;
+    font-family: 'Montserrat', sans-serif !important;
 }
 
-.preview-details { 
-    display: flex; 
-    flex-wrap: wrap; 
-    gap: 15px; 
-    font-size: .9rem; 
-    color: var(--text-main); 
+/* Cursore del testo Fucsia (dettaglio pro) */
+.field input:focus,
+.field textarea:focus {
+    caret-color: #ff00ff !important;
+    border-color: #ff00ff !important;
+    outline: none;
 }
 
-/* Allineamento bottoni fondo pagina */
+/* Placeholder leggibile */
+.field input::placeholder,
+.field textarea::placeholder {
+    color: #666 !important;
+}
+
+/* 4. ANTEPRIMA (Preview Card) */
+.preview-card {
+    background-color: #121214 !important;
+    border-left: 4px solid #ff00ff !important; /* Striscia Fucsia */
+    padding: 20px;
+    margin-top: 15px;
+    border-radius: 8px;
+}
+
+.preview-title {
+    font-family: 'Metal Lord', sans-serif;
+    color: #ffffff;
+    font-size: 1.5rem;
+}
+
+.preview-details {
+    font-family: 'Montserrat', sans-serif;
+    color: #aaa;
+    margin-top: 10px;
+}
+
+/* 5. Pulsanti */
+.form-actions button.btn-primary {
+    padding: 15px 31px !important; /* AUMENTIAMO IL PADDING (sopra/sotto e lati) */
+    font-size: 1.1rem !important; /* Testo leggermente più grande */
+    font-weight: bold !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    background-color: #ff00ff !important;
+    color: #000000 !important;
+    border-radius: 8px !important;
+}
 .form-actions {
     display: flex;
-    justify-content: flex-end;
-    gap: 1rem;
-    border-top: 1px solid var(--border);
-    padding-top: 1.5rem;
+    gap: 20px; /* Aumenta o diminuisci questo valore per regolare lo spazio */
+    margin-top: 30px;
+    align-items: center;
+}
+
+/* Assicurati che i pulsanti abbiano una larghezza coerente */
+.form-actions a,
+.form-actions button {
+    flex: 1; /* Li rende della stessa larghezza se vuoi */
+    text-align: center;
+}
+.card {
+    background-color: #252528 !important; /* Un grigio più chiaro dello sfondo */
+    border: 1px solid #2d2d34 !important; /* Bordo sottile per definirla */
+    border-radius: 16px !important;
+    padding: 40px !important;            /* Più spazio interno */
+    max-width: 900px !important;         /* Aumentiamo la larghezza massima */
+    margin: 0 auto !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }

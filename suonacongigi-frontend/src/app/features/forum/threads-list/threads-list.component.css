@@ -1,0 +1,93 @@
+.page-header h1 {
+    font-family: 'Metal Lord', sans-serif;
+}
+/* 1. Forza il container del Forum a essere fluido */
+.container {
+    max-width: 100%;
+    padding: 20px;
+}
+
+/* 2. Intestazione tabella (il blocco fucsia) */
+.table-wrapper table thead tr {
+    background-color: #ff00ff !important; /* Il fucsia del tuo screenshot */
+    color: #000 !important;
+}
+
+.table-wrapper table thead th {
+    padding: 1rem !important;
+    text-transform: uppercase;
+    font-weight: 800;
+    color: #fff !important;
+    border: none !important;
+}
+
+/* 3. Corpo della tabella (lo sfondo scuro) */
+.table-wrapper table tbody tr {
+    background-color: #1a1a1e !important; /* Grigio scuro */
+    border-bottom: 1px solid #2d2d34 !important;
+    color: #fff !important;
+}
+
+/* Rimuovi l'hover bianco e mettilo scuro coerente */
+.table-wrapper table tbody tr:hover {
+    background-color: #252528 !important;
+    transition: none;
+}
+
+/* 4. Link del titolo (forza il colore bianco) */
+.table-wrapper .thread-link {
+    color: #ffffff !important;
+    text-decoration: none;
+}
+
+.table-wrapper .thread-link:hover {
+    color: #ff00ff !important;
+}
+
+/* 5. Uniforma le Card (dove c'è il form "Nuova discussione") */
+.card {
+    background-color: #252528 !important;
+    border: 1px solid #2d2d34 !important;
+    padding: 1.5rem !important;
+    color: #fff !important;
+}
+
+.card label {
+    color: #aaa !important;
+}
+
+.card input,
+.card textarea,
+.card select {
+    background-color: #1a1a1e !important;
+    border: 1px solid #333 !important;
+    color: #fff !important;
+}
+
+/* 6. Fix per il testo grigio che non si legge */
+.text-muted {
+    color: #aaa !important;
+}
+
+.count-badge {
+    background: #1a1a1e;
+    color: #ff00ff;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+/* Usiamo le classi che vediamo nel tuo HTML */
+.table-wrapper table tbody tr {
+    background-color: #252528 !important;
+    border-bottom: 1px solid #2d2d34 !important;
+}
+
+.table-wrapper table tbody tr td {
+    color: #ffffff !important;
+    padding: 1rem !important; /* Questo aggiungerà spazio che ora è a 0 */
+}
+
+/* Forza anche il link dentro la tabella */
+.thread-link {
+    color: #ffffff !important;
+    font-weight: 600;
+}

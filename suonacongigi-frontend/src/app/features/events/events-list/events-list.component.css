@@ -1,9 +1,50 @@
+/* 1. Sfondo grigio scuro per la riga */
+.table-wrapper table tbody tr {
+    background-color: #252528 !important;
+    border-bottom: 2px solid #000 !important;
+    transition: none;
+}
+
+/* 2. Colore del testo: un grigio chiaro leggibile */
+.table-wrapper table td {
+    color: #b0b0b0 !important;
+    padding: 20px 15px !important;
+}
 .search-bar { margin-bottom: 1.5rem; }
 
+/* 3. Il titolo dell'evento deve risaltare (Fucsia) */
+.item-title {
+    color: #ff00ff !important;
+    font-weight: 600;
+}
+
+/* 4. Alternanza delle righe */
+.table-wrapper table tbody tr:nth-child(even) {
+    background-color: #202024 !important;
+}
+
+/* 5. Miglioriamo il contrasto del testo nella riga selezionata */
+.row-highlight {
+    border-left: 4px solid #ff00ff !important; /* Bordo fucsia laterale per indicare la selezione */
+}
+/* Applica font Metal Lord al titolo della sezione */
+.page-header h1 {
+    font-family: 'Metal Lord', sans-serif !important;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+/* Applica Montserrat alle intestazioni della tabella */
+.table-wrapper table thead th {
+    font-family: 'Montserrat', sans-serif !important;
+    text-transform: uppercase; /* Spesso Montserrat sta bene in maiuscolo nelle tabelle */
+    letter-spacing: 1px;
+    font-size: 0.9rem; /* Un po' più piccolo per essere elegante */
+    color: #ffffff !important; /* Fucsia per risaltare come avevi chiesto */
+}
 .search-input {
   width: 100%;
   padding: 0.6rem 1rem;
-  border: 1px solid var(--border-color, #ddd);
+  border: 1px solid /* var(--border-color, #ddd); TODO: VERIFICARE */;
   border-radius: 8px;
   font-size: 0.95rem;
   box-sizing: border-box;

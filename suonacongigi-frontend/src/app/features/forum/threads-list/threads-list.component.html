@@ -2,7 +2,7 @@
 
   <div class="page-header">
     <div>
-      <h1>💬 Forum della Community</h1>
+      <h1>Forum della Community</h1>
       <p class="text-muted">Discuti di musica, gear e live con gli altri appassionati</p>
     </div>
     <button class="btn" [class.btn-danger]="showForm()" [class.btn-primary]="!showForm()" (click)="toggleForm()">
@@ -64,7 +64,7 @@
         
         <div class="form-actions mt-1">
           <button type="submit" class="btn btn-primary" [disabled]="(loading.isLoading() || threadForm.invalid)">
-            {{ loading.isLoading() ? 'Sintonizzazione...' : 'Pubblica Discussione 🚀' }}
+            {{ loading.isLoading() ? 'Sintonizzazione...' : 'Pubblica Discussione' }}
           </button>
         </div>
       </form>

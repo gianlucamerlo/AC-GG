@@ -1,0 +1,35 @@
+<div class="admin-forum">
+    <h2>📝 GESTIONE CATEGORIE FORUM</h2>
+    <div class="form-box">
+        <h3>{{ editingId() ? "Modifica categoria" : "Nuova categoria" }}</h3>
+        <form [formGroup]="form">
+            <input formControlName="name" placeholder="Nome categoria" />
+            @if (form.get("name")?.invalid && form.get("name")?.touched) {
+                <span class="error">Il nome è obbligatorio</span>
+            }
+            <input formControlName="description" placeholder="Descrizione" />
+            <div class="form-actions">
+                <button (click)="save()" [disabled]="form.invalid">
+                    {{ editingId() ? "Salva modifiche" : "Crea categoria" }}
+                </button>
+                @if (editingId()) {
+                    <button class="secondary" (click)="cancelEdit()">Annulla</button>
+                }
+            </div>
+        </form>
+    </div>
+    <div class="category-list">
+        @for (cat of categories(); track cat.id) {
+            <div class="category-row">
+                <div class="info">
+                    <strong>{{ cat.name }}</strong>
+                    <p>{{ cat.description }}</p>
+                </div>
+                <div class="actions">
+                    <button (click)="startEdit(cat)">Modifica</button>
+                    <button class="danger" (click)="delete(cat.id)">Elimina</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
