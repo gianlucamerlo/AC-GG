@@ -10,8 +10,6 @@ Piattaforma web per musicisti che permette di scoprire eventi dal vivo, iscriver
 - [Architettura](#architettura)
 - [Avvio in locale](#avvio-in-locale)
 - [Struttura del progetto](#struttura-del-progetto)
-- [API — panoramica endpoint](#api--panoramica-endpoint)
-- [Autenticazione](#autenticazione)
 - [Team](#team)
 ---
  
