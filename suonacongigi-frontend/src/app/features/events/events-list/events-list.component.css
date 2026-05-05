@@ -8,3 +8,9 @@
   font-size: 0.95rem;
   box-sizing: border-box;
 }
+
+.seats-free {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-muted, #888);
+}

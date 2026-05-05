@@ -49,8 +49,11 @@
                 <div class="progress-container">
                   <div class="progress-label">
                     <span [class.text-error]="event.seatsAvailable <= 5">
-                      {{ event.seatsAvailable }} posti liberi
+                       {{ event.seatsBooked }} / {{ event.maxSeats }} iscritti
                     </span>
+                      <span class="seats-free" [class.text-error]="event.seatsAvailable <= 5">
+                    ({{ event.seatsAvailable }} liberi)
+                  </span>
                   </div>
                   <div class="progress-track">
                     <div class="progress-bar" 
